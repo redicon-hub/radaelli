@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SlugIndexRouteImport } from './routes/$slug.index'
 import { Route as AutoSostitutivaRiparazioneGrandinateIndexRouteImport } from './routes/auto-sostitutiva-riparazione-grandinate.index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
 import { Route as ContattiIndexRouteImport } from './routes/contatti.index'
@@ -17,11 +18,17 @@ import { Route as CorsiLevabolliMilanoLombardiaIndexRouteImport } from './routes
 import { Route as GestioneSinistriDaGrandineIndexRouteImport } from './routes/gestione-sinistri-da-grandine.index'
 import { Route as LavoroLevabolliCorsiIndexRouteImport } from './routes/lavoro-levabolli-corsi.index'
 import { Route as LevabolliRiparazioneAutoGrandinateIndexRouteImport } from './routes/levabolli-riparazione-auto-grandinate.index'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as PellicolePerVetriIndexRouteImport } from './routes/pellicole-per-vetri.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugIndexRoute = SlugIndexRouteImport.update({
+  id: '/$slug/',
+  path: '/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AutoSostitutivaRiparazioneGrandinateIndexRoute =
@@ -64,6 +71,11 @@ const LevabolliRiparazioneAutoGrandinateIndexRoute =
     path: '/levabolli-riparazione-auto-grandinate/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
   id: '/pellicole-per-vetri/',
   path: '/pellicole-per-vetri/',
@@ -72,6 +84,7 @@ const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/contatti/': typeof ContattiIndexRoute
@@ -79,10 +92,12 @@ export interface FileRoutesByFullPath {
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda': typeof AziendaIndexRoute
   '/contatti': typeof ContattiIndexRoute
@@ -90,11 +105,13 @@ export interface FileRoutesByTo {
   '/gestione-sinistri-da-grandine': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi': typeof LavoroLevabolliCorsiIndexRoute
   '/levabolli-riparazione-auto-grandinate': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/news': typeof NewsIndexRoute
   '/pellicole-per-vetri': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/contatti/': typeof ContattiIndexRoute
@@ -102,12 +119,14 @@ export interface FileRoutesById {
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/news/': typeof NewsIndexRoute
   '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/contatti/'
@@ -115,10 +134,12 @@ export interface FileRouteTypes {
     | '/gestione-sinistri-da-grandine/'
     | '/lavoro-levabolli-corsi/'
     | '/levabolli-riparazione-auto-grandinate/'
+    | '/news/'
     | '/pellicole-per-vetri/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug'
     | '/auto-sostitutiva-riparazione-grandinate'
     | '/azienda'
     | '/contatti'
@@ -126,10 +147,12 @@ export interface FileRouteTypes {
     | '/gestione-sinistri-da-grandine'
     | '/lavoro-levabolli-corsi'
     | '/levabolli-riparazione-auto-grandinate'
+    | '/news'
     | '/pellicole-per-vetri'
   id:
     | '__root__'
     | '/'
+    | '/$slug/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/contatti/'
@@ -137,11 +160,13 @@ export interface FileRouteTypes {
     | '/gestione-sinistri-da-grandine/'
     | '/lavoro-levabolli-corsi/'
     | '/levabolli-riparazione-auto-grandinate/'
+    | '/news/'
     | '/pellicole-per-vetri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugIndexRoute: typeof SlugIndexRoute
   AutoSostitutivaRiparazioneGrandinateIndexRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
   ContattiIndexRoute: typeof ContattiIndexRoute
@@ -149,6 +174,7 @@ export interface RootRouteChildren {
   GestioneSinistriDaGrandineIndexRoute: typeof GestioneSinistriDaGrandineIndexRoute
   LavoroLevabolliCorsiIndexRoute: typeof LavoroLevabolliCorsiIndexRoute
   LevabolliRiparazioneAutoGrandinateIndexRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  NewsIndexRoute: typeof NewsIndexRoute
   PellicolePerVetriIndexRoute: typeof PellicolePerVetriIndexRoute
 }
 
@@ -159,6 +185,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug/': {
+      id: '/$slug/'
+      path: '/$slug'
+      fullPath: '/$slug/'
+      preLoaderRoute: typeof SlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auto-sostitutiva-riparazione-grandinate/': {
@@ -210,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pellicole-per-vetri/': {
       id: '/pellicole-per-vetri/'
       path: '/pellicole-per-vetri'
@@ -222,6 +262,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugIndexRoute: SlugIndexRoute,
   AutoSostitutivaRiparazioneGrandinateIndexRoute:
     AutoSostitutivaRiparazioneGrandinateIndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,
@@ -232,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   LavoroLevabolliCorsiIndexRoute: LavoroLevabolliCorsiIndexRoute,
   LevabolliRiparazioneAutoGrandinateIndexRoute:
     LevabolliRiparazioneAutoGrandinateIndexRoute,
+  NewsIndexRoute: NewsIndexRoute,
   PellicolePerVetriIndexRoute: PellicolePerVetriIndexRoute,
 }
 export const routeTree = rootRouteImport

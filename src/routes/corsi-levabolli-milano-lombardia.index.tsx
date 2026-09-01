@@ -81,7 +81,9 @@ function Corsi() {
   return (
     <>
       <PageHero
-        eyebrow="Formazione"
+        eyebrow="Technical academy / PDR training"
+        ghost="Academy"
+        labels={["Teoria + pratica", "Veicoli reali", "Affiancamento in officina"]}
         title="Corsi levabolli a Milano e in Lombardia"
         subtitle="Teoria e pratica su veicoli reali, con affiancamento diretto in officina. Per professionisti dell'auto e per chi parte da zero."
         image={photos.course1}

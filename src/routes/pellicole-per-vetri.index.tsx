@@ -4,7 +4,6 @@ import {
   CtaBand,
   Editorial,
   FaqList,
-  Gallery,
   PageHero,
   Reviews,
   Section,
@@ -12,6 +11,7 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
+import { RailGallery, Statement, TechLabel } from "@/components/site/lab";
 import { BtnLink } from "@/components/site/ui";
 import { photos } from "@/lib/site";
 
@@ -69,7 +69,9 @@ function Pellicole() {
   return (
     <>
       <PageHero
-        eyebrow="Servizio"
+        eyebrow="Window film / dark glass"
+        ghost="Glass"
+        labels={["Pellicole omologate", "Controllo solare", "Sicurezza"]}
         title="Pellicole per vetri auto"
         subtitle="Oscuranti e di sicurezza: privacy, comfort termico e protezione, con applicazione professionale e pellicole omologate."
         image={photos.tint7}
@@ -108,22 +110,30 @@ function Pellicole() {
 
       <Section dark className="pt-0 lg:pt-0">
         <div className="container-x">
-          <SectionHead eyebrow="Vantaggi" title="Cosa ottieni." />
-          <div className="mt-14 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          <SectionHead eyebrow="Performance / cosa ottieni" title="Il vetro, migliorato." />
+          <ol className="mt-14">
             {[
-              ["Privacy", "Riservatezza per passeggeri e oggetti a bordo."],
-              ["Meno calore", "Riduzione della radiazione solare e della temperatura interna."],
-              ["Protezione UV", "Interni protetti dallo scolorimento e dai raggi ultravioletti."],
-              ["Estetica", "Una linea più pulita e omogenea su tutto il veicolo."],
-            ].map(([t, d], i) => (
-              <Reveal key={t} delay={i * 70} className="bg-carbon p-8 lg:p-10">
-                <h3 className="text-base font-extrabold uppercase tracking-[0.06em] text-brand">
+              ["01", "Privacy", "Riservatezza per passeggeri e oggetti a bordo."],
+              ["02", "Meno calore", "Riduzione della radiazione solare e della temperatura interna."],
+              ["03", "Protezione UV", "Interni protetti dallo scolorimento e dai raggi ultravioletti."],
+              ["04", "Estetica", "Una linea più pulita e omogenea su tutto il veicolo."],
+            ].map(([c, t, d], i) => (
+              <Reveal
+                as="li"
+                key={t}
+                delay={i * 60}
+                className="grid items-baseline gap-x-8 gap-y-2 border-t border-white/12 py-7 last:border-b lg:grid-cols-[5rem_minmax(0,16rem)_1fr]"
+              >
+                <span className="font-[family-name:var(--font-display)] text-3xl font-extrabold tabular-nums text-brand">
+                  {c}
+                </span>
+                <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.12em] text-offwhite">
                   {t}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-mutedgrey">{d}</p>
+                <p className="max-w-xl text-sm leading-relaxed text-mutedgrey">{d}</p>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </Section>
 
@@ -149,12 +159,21 @@ function Pellicole() {
         </div>
       </Section>
 
+      <Statement
+        kicker="Reflection / transparency"
+        lines={["La luce entra.", "Il calore no."]}
+        image={photos.tintDark}
+        imageAlt="Auto con vetri oscurati, riflessi sulla superficie"
+      />
+
       <Section dark>
         <div className="container-x">
-          <SectionHead eyebrow="Lavorazioni" title="Alcune applicazioni." />
-          <div className="mt-14">
-            <Gallery
-              columns={4}
+          <div className="flex items-end justify-between gap-6 border-b border-white/12 pb-6">
+            <TechLabel>Gallery / applicazioni</TechLabel>
+            <TechLabel tick={false}>Melzo · Milano</TechLabel>
+          </div>
+          <div className="mt-12">
+            <RailGallery
               images={[
                 { src: photos.tint1, alt: "Vetri oscurati su auto" },
                 { src: photos.tint3, alt: "Pellicola oscurante applicata" },

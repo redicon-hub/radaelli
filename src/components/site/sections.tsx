@@ -3,6 +3,7 @@ import { useId, useState, type ReactNode } from "react";
 import { business, reviews } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
+import { ReflectionLines, TechGrid, TechLabel } from "./lab";
 import { Arrow, BtnLink, Eyebrow, Figure } from "./ui";
 
 /* ---------------- Page hero (pagine interne) ---------------- */
@@ -14,6 +15,8 @@ export function PageHero({
   image,
   breadcrumb,
   compact,
+  ghost,
+  labels,
   children,
 }: {
   eyebrow: string;
@@ -22,6 +25,8 @@ export function PageHero({
   image: string;
   breadcrumb: { label: string; to?: string }[];
   compact?: boolean;
+  ghost?: string;
+  labels?: string[];
   children?: ReactNode;
 }) {
   return (
@@ -31,24 +36,33 @@ export function PageHero({
         alt=""
         aria-hidden
         fetchPriority="high"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        className="absolute inset-0 -z-30 h-full w-full object-cover"
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-20"
         style={{ background: "var(--gradient-hero)" }}
       />
+      <TechGrid className="-z-10 opacity-40" />
+      <ReflectionLines progress={0.75} count={5} className="-z-10" />
+      <div aria-hidden className="scanline -z-10" />
+      {ghost && (
+        <span aria-hidden className="ghost-word bottom-[-4%] right-[-3%]">
+          {ghost}
+        </span>
+      )}
+
       <div
         className={cn(
-          "container-x flex flex-col justify-end pb-14",
-          compact ? "pt-36 lg:pt-44 lg:pb-16" : "pt-40 lg:pt-52 lg:pb-24",
+          "container-x relative flex flex-col justify-end pb-16",
+          compact ? "pt-36 lg:pb-20 lg:pt-44" : "pt-40 lg:pb-28 lg:pt-56",
         )}
       >
-        <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex flex-wrap items-center gap-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-mutedgrey">
+        <nav aria-label="Breadcrumb" className="mb-10">
+          <ol className="flex flex-wrap items-center gap-2 text-[0.62rem] font-extrabold uppercase tracking-[0.24em] text-mutedgrey">
             {breadcrumb.map((b, i) => (
               <li key={b.label} className="flex items-center gap-2">
-                {i > 0 && <span aria-hidden>/</span>}
+                {i > 0 && <span aria-hidden className="text-brand">/</span>}
                 {b.to ? (
                   <Link to={b.to} className="hover:text-brand-bright">
                     {b.label}
@@ -60,18 +74,26 @@ export function PageHero({
             ))}
           </ol>
         </nav>
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="h-hero mt-5 max-w-5xl text-offwhite">{title}</h1>
+        <TechLabel>{eyebrow}</TechLabel>
+        <h1 className="h-xxl mt-7 max-w-6xl text-offwhite">{title}</h1>
         {subtitle && (
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-softgrey">
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-softgrey">
             {subtitle}
           </p>
         )}
-        {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
+        {children && <div className="mt-10 flex flex-wrap items-center gap-3">{children}</div>}
+        {labels && (
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/12 pt-5">
+            {labels.map((l) => (
+              <TechLabel key={l}>{l}</TechLabel>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Section shell ---------------- */
 
@@ -109,9 +131,9 @@ export function SectionHead({
 }) {
   return (
     <Reveal className={cn("max-w-3xl", className)}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="h-section mt-5">{title}</h2>
-      {intro && <p className="lead mt-6">{intro}</p>}
+      {eyebrow && <TechLabel>{eyebrow}</TechLabel>}
+      <h2 className="h-xl mt-6">{title}</h2>
+      {intro && <p className="lead mt-7">{intro}</p>}
     </Reveal>
   );
 }
@@ -120,32 +142,32 @@ export function SectionHead({
 
 export function ProcessSteps({
   steps,
-  dark,
 }: {
   steps: { title: string; text: string }[];
   dark?: boolean;
 }) {
   return (
-    <ol className="grid gap-px bg-current/10 sm:grid-cols-2 lg:grid-cols-5">
+    <ol>
       {steps.map((s, i) => (
         <Reveal
           as="li"
           key={s.title}
-          delay={i * 70}
-          className={cn("relative p-7 lg:p-8", dark ? "bg-carbon" : "bg-background")}
+          delay={i * 60}
+          className="group grid items-baseline gap-x-8 gap-y-3 border-t border-current/15 py-7 last:border-b lg:grid-cols-[5rem_minmax(0,18rem)_1fr]"
         >
-          <span className="block font-[family-name:var(--font-display)] text-5xl font-extrabold leading-none text-brand lg:text-6xl">
+          <span className="font-[family-name:var(--font-display)] text-3xl font-extrabold tabular-nums text-brand lg:text-4xl">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h3 className="mt-6 text-base font-extrabold uppercase tracking-[0.08em]">
+          <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.1em]">
             {s.title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{s.text}</p>
         </Reveal>
       ))}
     </ol>
   );
 }
+
 
 /* ---------------- FAQ (accordion, AEO friendly) ---------------- */
 

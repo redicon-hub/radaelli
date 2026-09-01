@@ -2,10 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Reveal } from "@/components/site/Reveal";
 import {
+  BeforeAfter,
+  PdrMethod,
+  QuickWhatsapp,
+  RailGallery,
+  Statement,
+  TechLabel,
+} from "@/components/site/lab";
+import {
   CtaBand,
   Editorial,
   FaqList,
-  Gallery,
   PageHero,
   ProcessSteps,
   Reviews,
@@ -14,8 +21,9 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
-import { BtnLink, Eyebrow, Figure } from "@/components/site/ui";
+import { BtnLink, Eyebrow } from "@/components/site/ui";
 import { photos } from "@/lib/site";
+
 
 const faqs: Faq[] = [
   {
@@ -105,15 +113,22 @@ function Levabolli() {
   return (
     <>
       <PageHero
-        eyebrow="Servizio principale"
+        eyebrow="Precision surface restoration"
         title="Levabolli Riparazione Auto Grandinate"
         subtitle="Raddrizziamo le ammaccature da grandine senza stuccatura né riverniciatura, mantenendo inalterata l'originalità della tua auto."
         image={photos.hail1}
+        ghost="Zero"
+        labels={[
+          "PDR / paintless dent repair",
+          "Original paint / preserved",
+          "Melzo · Milano",
+        ]}
         breadcrumb={[
           { label: "Home", to: "/" },
           { label: "Levabolli auto grandinate" },
         ]}
       >
+
         <BtnLink to="/contatti/" size="lg">
           Richiedi una valutazione
         </BtnLink>
@@ -219,36 +234,54 @@ function Levabolli() {
         </div>
       </Section>
 
-      <Section dark>
+      <PdrMethod />
+
+      <section className="relative overflow-hidden py-24 lg:py-32">
         <div className="container-x">
-          <SectionHead eyebrow="Prima / dopo" title="Il risultato si vede." intro="Fotografie reali delle lavorazioni eseguite nella nostra sede." />
-          <div className="mt-14 grid gap-3 lg:grid-cols-2">
-            <Reveal>
-              <Figure src={photos.hail5} alt="Carrozzeria grandinata prima dell'intervento" ratio="aspect-[16/10]" />
-              <p className="mt-3 text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-mutedgrey">
-                Prima — pannello grandinato
-              </p>
-            </Reveal>
-            <Reveal delay={90}>
-              <Figure src={photos.hail3} alt="Carrozzeria ripristinata dopo l'intervento levabolli" ratio="aspect-[16/10]" />
-              <p className="mt-3 text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-brand">
-                Dopo — superficie ripristinata
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-3">
-            <Gallery
-              columns={4}
-              images={[
-                { src: photos.hail4, alt: "Lavorazione levabolli su parafango" },
-                { src: photos.hail6, alt: "Auto grandinata in officina" },
-                { src: photos.hail7, alt: "Dettaglio riparazione PDR" },
-                { src: photos.levabolliMilano, alt: "Levabolli Milano — intervento su tetto" },
-              ]}
-            />
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <TechLabel>Comparison / same panel</TechLabel>
+              <h2 className="h-xl mt-6">
+                Damage
+                <br />
+                <span className="text-brand">is temporary.</span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Fotografie reali delle lavorazioni eseguite nella nostra sede.
+              Trascina l'indicatore per confrontare superficie deformata e superficie
+              ripristinata.
+            </p>
           </div>
         </div>
-      </Section>
+        <div className="mt-12">
+          <BeforeAfter
+            before={photos.hail5}
+            after={photos.hail3}
+            beforeAlt="Carrozzeria grandinata prima dell'intervento"
+            afterAlt="Carrozzeria ripristinata dopo l'intervento levabolli"
+            className="h-[60svh] w-full lg:h-[80svh]"
+          />
+        </div>
+        <div className="container-x mt-10">
+          <RailGallery
+            images={[
+              { src: photos.hail4, alt: "Lavorazione levabolli su parafango" },
+              { src: photos.hail6, alt: "Auto grandinata in officina" },
+              { src: photos.hail7, alt: "Dettaglio riparazione PDR" },
+              { src: photos.levabolliMilano, alt: "Levabolli Milano — intervento su tetto" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <Statement
+        kicker="Surface control"
+        lines={["Precisione", "che non lascia", "segni."]}
+        image={photos.workshop5}
+        imageAlt="Controllo della superficie in luce radente"
+      />
+
 
       <Section>
         <div className="container-x">
@@ -308,21 +341,40 @@ function Levabolli() {
 
       <Reviews />
 
-      <section className="surface-dark">
-        <div className="container-x grid items-stretch lg:grid-cols-2">
-          <div className="relative min-h-[300px]">
-            <img
-              src={photos.hail8}
-              alt="Auto grandinata pronta per la valutazione"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+      <section className="surface-dark relative isolate overflow-hidden">
+        <img
+          src={photos.hail8}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-25"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{ background: "var(--gradient-hero)" }}
+        />
+        <div className="container-x grid gap-14 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <TechLabel>Damage intake</TechLabel>
+            <h2 className="h-xl mt-6 text-offwhite">
+              Facci vedere
+              <br />
+              <span className="text-brand">il danno.</span>
+            </h2>
+            <p className="mt-7 max-w-md text-lg leading-relaxed text-softgrey">
+              Carica qualche fotografia. Al resto pensiamo insieme.
+            </p>
+            <div className="mt-10 max-w-md">
+              <QuickWhatsapp />
+            </div>
           </div>
-          <div className="bg-graphite p-8 sm:p-12 lg:p-16">
+          <div className="border border-white/12 bg-carbon/80 p-7 backdrop-blur-sm sm:p-10 lg:p-12">
             <LeadForm />
           </div>
         </div>
       </section>
+
 
       <CtaBand title="Valutiamo insieme il tuo caso." cta="Parlaci del danno" />
     </>

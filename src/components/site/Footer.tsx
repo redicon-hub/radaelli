@@ -1,15 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { business, servicesNav } from "@/lib/site";
 import { Arrow, BtnLink } from "./ui";
+import { TechLabel } from "./lab";
 import logoAsset from "@/assets/radaelli-logo.png.asset.json";
 
 export function Footer() {
   return (
-    <footer className="surface-dark">
+    <footer className="surface-dark relative overflow-hidden">
       <div className="container-x border-b border-white/10 py-14 lg:py-20">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <h2 className="h-section max-w-2xl text-offwhite">
-            Hai l'auto grandinata?
+          <h2 className="h-xl max-w-2xl text-offwhite">
+            Hai l'auto <span className="text-brand">grandinata?</span>
           </h2>
           <div className="flex flex-wrap gap-3">
             <BtnLink to="/contatti/" size="lg">
@@ -25,6 +26,22 @@ export function Footer() {
         </div>
       </div>
 
+      {/* scena tipografica */}
+      <div className="container-x pt-16">
+        <span
+          aria-hidden
+          className="block font-[family-name:var(--font-display)] text-[clamp(3.4rem,17vw,16rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.05em] text-offwhite"
+        >
+          Radaelli
+        </span>
+        <div className="mt-4 flex flex-wrap gap-x-10 gap-y-2 border-t border-white/10 pt-4">
+          <TechLabel>Levabolli</TechLabel>
+          <TechLabel tick={false}>PDR</TechLabel>
+          <TechLabel tick={false}>Melzo · Milano</TechLabel>
+          <TechLabel tick={false}>2003 — {new Date().getFullYear()}</TechLabel>
+        </div>
+      </div>
+
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div>
@@ -33,7 +50,7 @@ export function Footer() {
               alt="Radaelli Levabolli — 20 anni, 2003-2023"
               width={448}
               height={79}
-              className="h-14 w-auto rounded-sm bg-white px-3 py-2"
+              className="h-14 w-auto bg-white px-3 py-2"
             />
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-mutedgrey">
@@ -55,6 +72,7 @@ export function Footer() {
             </a>
           </div>
         </div>
+
 
         <FooterCol title="Servizi">
           {servicesNav.map((s) => (

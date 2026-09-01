@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
+import { Route as GestioneSinistriDaGrandineIndexRouteImport } from './routes/gestione-sinistri-da-grandine.index'
 import { Route as LevabolliRiparazioneAutoGrandinateIndexRouteImport } from './routes/levabolli-riparazione-auto-grandinate.index'
 import { Route as PellicolePerVetriIndexRouteImport } from './routes/pellicole-per-vetri.index'
 
@@ -24,6 +25,12 @@ const AziendaIndexRoute = AziendaIndexRouteImport.update({
   path: '/azienda/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GestioneSinistriDaGrandineIndexRoute =
+  GestioneSinistriDaGrandineIndexRouteImport.update({
+    id: '/gestione-sinistri-da-grandine/',
+    path: '/gestione-sinistri-da-grandine/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LevabolliRiparazioneAutoGrandinateIndexRoute =
   LevabolliRiparazioneAutoGrandinateIndexRouteImport.update({
     id: '/levabolli-riparazione-auto-grandinate/',
@@ -39,12 +46,14 @@ const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
   '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/azienda': typeof AziendaIndexRoute
+  '/gestione-sinistri-da-grandine': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
   '/pellicole-per-vetri': typeof PellicolePerVetriIndexRoute
 }
@@ -52,6 +61,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
   '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
@@ -60,18 +70,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/azienda/'
+    | '/gestione-sinistri-da-grandine/'
     | '/levabolli-riparazione-auto-grandinate/'
     | '/pellicole-per-vetri/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/azienda'
+    | '/gestione-sinistri-da-grandine'
     | '/levabolli-riparazione-auto-grandinate'
     | '/pellicole-per-vetri'
   id:
     | '__root__'
     | '/'
     | '/azienda/'
+    | '/gestione-sinistri-da-grandine/'
     | '/levabolli-riparazione-auto-grandinate/'
     | '/pellicole-per-vetri/'
   fileRoutesById: FileRoutesById
@@ -79,6 +92,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
+  GestioneSinistriDaGrandineIndexRoute: typeof GestioneSinistriDaGrandineIndexRoute
   LevabolliRiparazioneAutoGrandinateIndexRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRoute
   PellicolePerVetriIndexRoute: typeof PellicolePerVetriIndexRoute
 }
@@ -97,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/azienda'
       fullPath: '/azienda/'
       preLoaderRoute: typeof AziendaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gestione-sinistri-da-grandine/': {
+      id: '/gestione-sinistri-da-grandine/'
+      path: '/gestione-sinistri-da-grandine'
+      fullPath: '/gestione-sinistri-da-grandine/'
+      preLoaderRoute: typeof GestioneSinistriDaGrandineIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/levabolli-riparazione-auto-grandinate/': {
@@ -119,6 +140,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,
+  GestioneSinistriDaGrandineIndexRoute: GestioneSinistriDaGrandineIndexRoute,
   LevabolliRiparazioneAutoGrandinateIndexRoute:
     LevabolliRiparazioneAutoGrandinateIndexRoute,
   PellicolePerVetriIndexRoute: PellicolePerVetriIndexRoute,

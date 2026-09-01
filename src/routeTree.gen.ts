@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AutoSostitutivaRiparazioneGrandinateIndexRouteImport } from './routes/auto-sostitutiva-riparazione-grandinate.index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
+import { Route as ContattiIndexRouteImport } from './routes/contatti.index'
 import { Route as CorsiLevabolliMilanoLombardiaIndexRouteImport } from './routes/corsi-levabolli-milano-lombardia.index'
 import { Route as GestioneSinistriDaGrandineIndexRouteImport } from './routes/gestione-sinistri-da-grandine.index'
 import { Route as LavoroLevabolliCorsiIndexRouteImport } from './routes/lavoro-levabolli-corsi.index'
@@ -32,6 +33,11 @@ const AutoSostitutivaRiparazioneGrandinateIndexRoute =
 const AziendaIndexRoute = AziendaIndexRouteImport.update({
   id: '/azienda/',
   path: '/azienda/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContattiIndexRoute = ContattiIndexRouteImport.update({
+  id: '/contatti/',
+  path: '/contatti/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorsiLevabolliMilanoLombardiaIndexRoute =
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/contatti/': typeof ContattiIndexRoute
   '/corsi-levabolli-milano-lombardia/': typeof CorsiLevabolliMilanoLombardiaIndexRoute
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auto-sostitutiva-riparazione-grandinate': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda': typeof AziendaIndexRoute
+  '/contatti': typeof ContattiIndexRoute
   '/corsi-levabolli-milano-lombardia': typeof CorsiLevabolliMilanoLombardiaIndexRoute
   '/gestione-sinistri-da-grandine': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi': typeof LavoroLevabolliCorsiIndexRoute
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/contatti/': typeof ContattiIndexRoute
   '/corsi-levabolli-milano-lombardia/': typeof CorsiLevabolliMilanoLombardiaIndexRoute
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
+    | '/contatti/'
     | '/corsi-levabolli-milano-lombardia/'
     | '/gestione-sinistri-da-grandine/'
     | '/lavoro-levabolli-corsi/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auto-sostitutiva-riparazione-grandinate'
     | '/azienda'
+    | '/contatti'
     | '/corsi-levabolli-milano-lombardia'
     | '/gestione-sinistri-da-grandine'
     | '/lavoro-levabolli-corsi'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
+    | '/contatti/'
     | '/corsi-levabolli-milano-lombardia/'
     | '/gestione-sinistri-da-grandine/'
     | '/lavoro-levabolli-corsi/'
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AutoSostitutivaRiparazioneGrandinateIndexRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
+  ContattiIndexRoute: typeof ContattiIndexRoute
   CorsiLevabolliMilanoLombardiaIndexRoute: typeof CorsiLevabolliMilanoLombardiaIndexRoute
   GestioneSinistriDaGrandineIndexRoute: typeof GestioneSinistriDaGrandineIndexRoute
   LavoroLevabolliCorsiIndexRoute: typeof LavoroLevabolliCorsiIndexRoute
@@ -160,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/azienda'
       fullPath: '/azienda/'
       preLoaderRoute: typeof AziendaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatti/': {
+      id: '/contatti/'
+      path: '/contatti'
+      fullPath: '/contatti/'
+      preLoaderRoute: typeof ContattiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corsi-levabolli-milano-lombardia/': {
@@ -205,6 +225,7 @@ const rootRouteChildren: RootRouteChildren = {
   AutoSostitutivaRiparazioneGrandinateIndexRoute:
     AutoSostitutivaRiparazioneGrandinateIndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,
+  ContattiIndexRoute: ContattiIndexRoute,
   CorsiLevabolliMilanoLombardiaIndexRoute:
     CorsiLevabolliMilanoLombardiaIndexRoute,
   GestioneSinistriDaGrandineIndexRoute: GestioneSinistriDaGrandineIndexRoute,

@@ -4,7 +4,6 @@ import {
   CtaBand,
   Editorial,
   FaqList,
-  Gallery,
   PageHero,
   Reviews,
   Section,

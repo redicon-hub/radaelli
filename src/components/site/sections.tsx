@@ -131,9 +131,9 @@ export function SectionHead({
 }) {
   return (
     <Reveal className={cn("max-w-3xl", className)}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="h-section mt-5">{title}</h2>
-      {intro && <p className="lead mt-6">{intro}</p>}
+      {eyebrow && <TechLabel>{eyebrow}</TechLabel>}
+      <h2 className="h-xl mt-6">{title}</h2>
+      {intro && <p className="lead mt-7">{intro}</p>}
     </Reveal>
   );
 }
@@ -142,32 +142,32 @@ export function SectionHead({
 
 export function ProcessSteps({
   steps,
-  dark,
 }: {
   steps: { title: string; text: string }[];
   dark?: boolean;
 }) {
   return (
-    <ol className="grid gap-px bg-current/10 sm:grid-cols-2 lg:grid-cols-5">
+    <ol>
       {steps.map((s, i) => (
         <Reveal
           as="li"
           key={s.title}
-          delay={i * 70}
-          className={cn("relative p-7 lg:p-8", dark ? "bg-carbon" : "bg-background")}
+          delay={i * 60}
+          className="group grid items-baseline gap-x-8 gap-y-3 border-t border-current/15 py-7 last:border-b lg:grid-cols-[5rem_minmax(0,18rem)_1fr]"
         >
-          <span className="block font-[family-name:var(--font-display)] text-5xl font-extrabold leading-none text-brand lg:text-6xl">
+          <span className="font-[family-name:var(--font-display)] text-3xl font-extrabold tabular-nums text-brand lg:text-4xl">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h3 className="mt-6 text-base font-extrabold uppercase tracking-[0.08em]">
+          <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.1em]">
             {s.title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+          <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{s.text}</p>
         </Reveal>
       ))}
     </ol>
   );
 }
+
 
 /* ---------------- FAQ (accordion, AEO friendly) ---------------- */
 

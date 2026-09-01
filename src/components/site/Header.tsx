@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { business, servicesNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Arrow, BtnLink } from "./ui";
+import logoAsset from "@/assets/radaelli-logo.png.asset.json";
 
 const mainNav = [
   { label: "Azienda", to: "/azienda/" },
@@ -37,15 +38,13 @@ export function Header() {
     >
       <div className="container-x flex h-[72px] items-center justify-between gap-6 lg:h-20">
         <Link to="/" className="flex items-center gap-3" aria-label="Radaelli Levabolli — home">
-          <span aria-hidden className="h-7 w-1.5 bg-brand" />
-          <span className="leading-none">
-            <span className="block font-[family-name:var(--font-display)] text-lg font-extrabold uppercase tracking-tight text-offwhite">
-              Radaelli
-            </span>
-            <span className="block text-[0.62rem] font-bold uppercase tracking-[0.32em] text-mutedgrey">
-              Levabolli
-            </span>
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Radaelli Levabolli — 20 anni, 2003-2023"
+            width={448}
+            height={79}
+            className="h-10 w-auto rounded-sm bg-white px-2.5 py-1.5 lg:h-11"
+          />
         </Link>
 
         <nav aria-label="Principale" className="hidden items-center gap-1 xl:flex">

@@ -219,36 +219,54 @@ function Levabolli() {
         </div>
       </Section>
 
-      <Section dark>
+      <PdrMethod />
+
+      <section className="relative overflow-hidden py-24 lg:py-32">
         <div className="container-x">
-          <SectionHead eyebrow="Prima / dopo" title="Il risultato si vede." intro="Fotografie reali delle lavorazioni eseguite nella nostra sede." />
-          <div className="mt-14 grid gap-3 lg:grid-cols-2">
-            <Reveal>
-              <Figure src={photos.hail5} alt="Carrozzeria grandinata prima dell'intervento" ratio="aspect-[16/10]" />
-              <p className="mt-3 text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-mutedgrey">
-                Prima — pannello grandinato
-              </p>
-            </Reveal>
-            <Reveal delay={90}>
-              <Figure src={photos.hail3} alt="Carrozzeria ripristinata dopo l'intervento levabolli" ratio="aspect-[16/10]" />
-              <p className="mt-3 text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-brand">
-                Dopo — superficie ripristinata
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-3">
-            <Gallery
-              columns={4}
-              images={[
-                { src: photos.hail4, alt: "Lavorazione levabolli su parafango" },
-                { src: photos.hail6, alt: "Auto grandinata in officina" },
-                { src: photos.hail7, alt: "Dettaglio riparazione PDR" },
-                { src: photos.levabolliMilano, alt: "Levabolli Milano — intervento su tetto" },
-              ]}
-            />
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <TechLabel>Comparison / same panel</TechLabel>
+              <h2 className="h-xl mt-6">
+                Damage
+                <br />
+                <span className="text-brand">is temporary.</span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Fotografie reali delle lavorazioni eseguite nella nostra sede.
+              Trascina l'indicatore per confrontare superficie deformata e superficie
+              ripristinata.
+            </p>
           </div>
         </div>
-      </Section>
+        <div className="mt-12">
+          <BeforeAfter
+            before={photos.hail5}
+            after={photos.hail3}
+            beforeAlt="Carrozzeria grandinata prima dell'intervento"
+            afterAlt="Carrozzeria ripristinata dopo l'intervento levabolli"
+            className="h-[60svh] w-full lg:h-[80svh]"
+          />
+        </div>
+        <div className="container-x mt-10">
+          <RailGallery
+            images={[
+              { src: photos.hail4, alt: "Lavorazione levabolli su parafango" },
+              { src: photos.hail6, alt: "Auto grandinata in officina" },
+              { src: photos.hail7, alt: "Dettaglio riparazione PDR" },
+              { src: photos.levabolliMilano, alt: "Levabolli Milano — intervento su tetto" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <Statement
+        kicker="Surface control"
+        lines={["Precisione", "che non lascia", "segni."]}
+        image={photos.workshop5}
+        imageAlt="Controllo della superficie in luce radente"
+      />
+
 
       <Section>
         <div className="container-x">

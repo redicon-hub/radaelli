@@ -24,7 +24,7 @@ export function MobileBar() {
         WhatsApp
       </a>
       <Link
-        to="/contatti"
+        to="/contatti/"
         className="flex min-h-[62px] flex-col items-center justify-center gap-1 bg-brand text-[0.62rem] font-extrabold uppercase tracking-[0.16em] text-[oklch(0.16_0.01_168)]"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">

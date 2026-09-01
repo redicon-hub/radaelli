@@ -72,11 +72,11 @@ export type NavItem = { label: string; to: string };
 export const servicesNav: NavItem[] = [
   {
     label: "Riparazione auto grandinate / Levabolli",
-    to: "/levabolli-riparazione-auto-grandinate",
+    to: "/levabolli-riparazione-auto-grandinate/",
   },
-  { label: "Pellicole oscuranti", to: "/pellicole-per-vetri" },
-  { label: "Gestione sinistri da grandine", to: "/gestione-sinistri-da-grandine" },
-  { label: "Auto di cortesia", to: "/auto-sostitutiva-riparazione-grandinate" },
+  { label: "Pellicole oscuranti", to: "/pellicole-per-vetri/" },
+  { label: "Gestione sinistri da grandine", to: "/gestione-sinistri-da-grandine/" },
+  { label: "Auto di cortesia", to: "/auto-sostitutiva-riparazione-grandinate/" },
 ];
 
 export const reviews = [

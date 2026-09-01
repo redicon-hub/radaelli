@@ -42,25 +42,25 @@ const services = [
   {
     title: "Levabolli / Auto grandinate",
     desc: "Rimozione delle ammaccature senza riverniciatura, preservando la vernice originale.",
-    to: "/levabolli-riparazione-auto-grandinate",
+    to: "/levabolli-riparazione-auto-grandinate/",
     image: photos.hail1,
   },
   {
     title: "Gestione sinistri",
     desc: "Pratica con la compagnia e liquidazione diretta del danno: la burocrazia la gestiamo noi.",
-    to: "/gestione-sinistri-da-grandine",
+    to: "/gestione-sinistri-da-grandine/",
     image: photos.hail6,
   },
   {
     title: "Pellicole oscuranti",
     desc: "Controllo solare e pellicole di sicurezza, applicate nel rispetto delle normative.",
-    to: "/pellicole-per-vetri",
+    to: "/pellicole-per-vetri/",
     image: photos.tint6,
   },
   {
     title: "Auto di cortesia",
     desc: "Un mezzo a disposizione per tutta la durata della riparazione.",
-    to: "/auto-sostitutiva-riparazione-grandinate",
+    to: "/auto-sostitutiva-riparazione-grandinate/",
     image: photos.courtesyCar,
   },
 ];
@@ -131,11 +131,11 @@ function Home() {
           </Reveal>
           <Reveal delay={240}>
             <div className="mt-10 flex flex-wrap gap-3">
-              <BtnLink to="/contatti" size="lg">
+              <BtnLink to="/contatti/" size="lg">
                 Ho l'auto grandinata
               </BtnLink>
               <Link
-                to="/levabolli-riparazione-auto-grandinate"
+                to="/levabolli-riparazione-auto-grandinate/"
                 className="inline-flex h-14 items-center gap-3 px-8 text-[0.82rem] font-extrabold uppercase tracking-[0.14em] text-offwhite ring-1 ring-white/25 transition-colors hover:text-brand-bright hover:ring-brand"
               >
                 Scopri come lavoriamo
@@ -169,7 +169,7 @@ function Home() {
             }
             image={photos.hail2}
             alt="Riparazione ammaccature da grandine con tecnica levabolli"
-            to="/levabolli-riparazione-auto-grandinate"
+            to="/levabolli-riparazione-auto-grandinate/"
             ctaLabel="Scopri la tecnica levabolli"
           >
             <p>
@@ -218,7 +218,7 @@ function Home() {
           </div>
           <Reveal className="mt-10">
             <Link
-              to="/levabolli-riparazione-auto-grandinate"
+              to="/levabolli-riparazione-auto-grandinate/"
               className="group inline-flex items-center gap-3 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-brand"
             >
               Guarda i nostri interventi
@@ -237,7 +237,7 @@ function Home() {
               title="Grandinata? Ci occupiamo di tutto."
             />
             <Reveal>
-              <BtnLink to="/contatti" size="lg">
+              <BtnLink to="/contatti/" size="lg">
                 Inizia da qui
               </BtnLink>
             </Reveal>
@@ -286,7 +286,7 @@ function Home() {
             }
             image={photos.workshop2}
             alt="Officina Radaelli Levabolli a Melzo"
-            to="/gestione-sinistri-da-grandine"
+            to="/gestione-sinistri-da-grandine/"
             ctaLabel="Come funziona"
             reverse
           >
@@ -376,7 +376,7 @@ function Home() {
               indicate dall'azienda.
             </p>
             <div className="mt-8">
-              <BtnLink to="/auto-sostitutiva-riparazione-grandinate">
+              <BtnLink to="/auto-sostitutiva-riparazione-grandinate/">
                 Scopri il servizio
               </BtnLink>
             </div>
@@ -412,7 +412,7 @@ function Home() {
                 ))}
               </div>
               <div className="mt-9">
-                <BtnLink to="/pellicole-per-vetri" variant="ghost">
+                <BtnLink to="/pellicole-per-vetri/" variant="ghost">
                   Scopri le pellicole
                 </BtnLink>
               </div>
@@ -443,7 +443,7 @@ function Home() {
             }
             image={photos.workshop1}
             alt="Il team Radaelli Levabolli al lavoro"
-            to="/azienda"
+            to="/azienda/"
             ctaLabel="Conosci l'azienda"
           >
             <p>
@@ -470,7 +470,7 @@ function Home() {
             <SectionHead eyebrow="News" title="Dal nostro garage" />
             <Reveal>
               <Link
-                to="/news"
+                to="/news/"
                 className="group inline-flex items-center gap-3 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-brand"
               >
                 Tutti gli articoli
@@ -481,7 +481,7 @@ function Home() {
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {journalPosts.map((p, i) => (
               <Reveal key={p.slug} delay={i * 80}>
-                <Link to="/$slug" params={{ slug: p.slug }} className="group block">
+                <Link to="/$slug/" params={{ slug: p.slug }} className="group block">
                   <Figure src={p.image} alt={p.title} ratio="aspect-[16/10]" />
                   <p className="mt-5 text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-brand">
                     {p.category} · {p.date}

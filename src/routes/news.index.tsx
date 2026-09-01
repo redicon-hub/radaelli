@@ -40,7 +40,7 @@ function News() {
             {posts.map((p, i) => (
               <Reveal key={p.slug} delay={(i % 3) * 80}>
                 <article className="group flex h-full flex-col border border-border bg-card">
-                  <Link to="/$/" params={{ splat: { _: p.slug } }} className="block overflow-hidden">
+                  <Link to="/$slug/" params={{ slug: p.slug }} className="block overflow-hidden">
                     <img
                       src={p.image}
                       alt={p.title}
@@ -53,11 +53,7 @@ function News() {
                       {p.category}
                     </span>
                     <h2 className="mt-3 text-lg font-extrabold leading-snug tracking-tight">
-                      <Link
-                        to="/$/"
-                        params={{ splat: { _: p.slug } }}
-                        className="hover:text-brand"
-                      >
+                      <Link to="/$slug/" params={{ slug: p.slug }} className="hover:text-brand">
                         {p.title}
                       </Link>
                     </h2>
@@ -65,8 +61,8 @@ function News() {
                       {p.excerpt}
                     </p>
                     <Link
-                      to="/$/"
-                      params={{ splat: { _: p.slug } }}
+                      to="/$slug/"
+                      params={{ slug: p.slug }}
                       className="mt-6 inline-flex items-center gap-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-brand"
                     >
                       Leggi

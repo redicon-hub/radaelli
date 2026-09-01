@@ -99,63 +99,47 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="surface-dark relative isolate flex min-h-[92svh] items-end overflow-hidden">
-        <img
-          src={photos.heroHome}
-          alt="Auto in lavorazione presso Radaelli Levabolli a Melzo"
-          fetchPriority="high"
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10"
-          style={{ background: "var(--gradient-hero)" }}
-        />
-        <div className="container-x pb-16 pt-36 lg:pb-24">
-          <Reveal>
-            <Eyebrow>Radaelli Levabolli · Melzo / Milano</Eyebrow>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="h-hero mt-6 max-w-5xl text-offwhite">
-              La grandine passa.
-              <br />
-              <span className="text-brand">I segni possono sparire.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-softgrey">
-              Ripristiniamo auto danneggiate dalla grandine con tecnica levabolli,
-              preservando quando possibile la vernice originale. Gestiamo anche la
-              pratica assicurativa.
-            </p>
-          </Reveal>
-          <Reveal delay={240}>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <BtnLink to="/contatti/" size="lg">
-                Ho l'auto grandinata
-              </BtnLink>
-              <Link
-                to="/levabolli-riparazione-auto-grandinate/"
-                className="inline-flex h-14 items-center gap-3 px-8 text-[0.82rem] font-extrabold uppercase tracking-[0.14em] text-offwhite ring-1 ring-white/25 transition-colors hover:text-brand-bright hover:ring-brand"
-              >
-                Scopri come lavoriamo
-                <Arrow />
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal delay={320}>
-            <ul className="mt-12 flex flex-wrap gap-x-10 gap-y-3 border-t border-white/15 pt-6 text-[0.72rem] font-extrabold uppercase tracking-[0.2em] text-softgrey">
-              {["Tecnica PDR", "Gestione sinistro", "Auto di cortesia"].map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <span aria-hidden className="h-1.5 w-1.5 bg-brand" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
+      {/* HERO SLIDER */}
+      <HeroSlider
+        slides={[
+          {
+            id: "hail",
+            eyebrow: "Radaelli Levabolli · Melzo / Milano",
+            title: (
+              <>
+                La grandine passa.
+                <br />
+                <span className="text-brand">I segni possono sparire.</span>
+              </>
+            ),
+            description:
+              "Ripristiniamo auto danneggiate dalla grandine con tecnica levabolli, preservando quando possibile la vernice originale. Gestiamo anche la pratica assicurativa.",
+            image: photos.heroHome,
+            imageAlt: "Auto in lavorazione presso Radaelli Levabolli a Melzo",
+            primaryCta: { label: "Ho l'auto grandinata", to: "/contatti/" },
+            secondaryCta: { label: "Scopri come lavoriamo", to: "/levabolli-riparazione-auto-grandinate/" },
+            badges: ["Tecnica PDR", "Gestione sinistro", "Auto di cortesia"],
+          },
+          {
+            id: "tint",
+            eyebrow: "Servizio",
+            title: (
+              <>
+                Pellicole oscuranti
+                <br />
+                <span className="text-brand">per vetri auto.</span>
+              </>
+            ),
+            description:
+              "Privacy, comfort termico e protezione UV con pellicole omologate. Applicazione professionale a Melzo, vicino a Milano.",
+            image: photos.tint7,
+            imageAlt: "Auto con pellicole oscuranti applicate",
+            primaryCta: { label: "Richiedi un preventivo", to: "/contatti/" },
+            secondaryCta: { label: "Scopri il servizio", to: "/pellicole-per-vetri/" },
+            badges: ["Omologate", "Privacy", "Comfort termico"],
+          },
+        ]}
+      />
 
       {/* PDR EDITORIALE */}
       <Section>

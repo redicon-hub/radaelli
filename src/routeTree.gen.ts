@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AutoSostitutivaRiparazioneGrandinateIndexRouteImport } from './routes/auto-sostitutiva-riparazione-grandinate.index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
 import { Route as GestioneSinistriDaGrandineIndexRouteImport } from './routes/gestione-sinistri-da-grandine.index'
 import { Route as LevabolliRiparazioneAutoGrandinateIndexRouteImport } from './routes/levabolli-riparazione-auto-grandinate.index'
@@ -20,6 +21,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutoSostitutivaRiparazioneGrandinateIndexRoute =
+  AutoSostitutivaRiparazioneGrandinateIndexRouteImport.update({
+    id: '/auto-sostitutiva-riparazione-grandinate/',
+    path: '/auto-sostitutiva-riparazione-grandinate/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AziendaIndexRoute = AziendaIndexRouteImport.update({
   id: '/azienda/',
   path: '/azienda/',
@@ -45,6 +52,7 @@ const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
@@ -52,6 +60,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda': typeof AziendaIndexRoute
   '/gestione-sinistri-da-grandine': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
@@ -60,6 +69,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
   '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
@@ -69,6 +79,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/gestione-sinistri-da-grandine/'
     | '/levabolli-riparazione-auto-grandinate/'
@@ -76,6 +87,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auto-sostitutiva-riparazione-grandinate'
     | '/azienda'
     | '/gestione-sinistri-da-grandine'
     | '/levabolli-riparazione-auto-grandinate'
@@ -83,6 +95,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/gestione-sinistri-da-grandine/'
     | '/levabolli-riparazione-auto-grandinate/'
@@ -91,6 +104,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutoSostitutivaRiparazioneGrandinateIndexRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
   GestioneSinistriDaGrandineIndexRoute: typeof GestioneSinistriDaGrandineIndexRoute
   LevabolliRiparazioneAutoGrandinateIndexRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRoute
@@ -104,6 +118,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auto-sostitutiva-riparazione-grandinate/': {
+      id: '/auto-sostitutiva-riparazione-grandinate/'
+      path: '/auto-sostitutiva-riparazione-grandinate'
+      fullPath: '/auto-sostitutiva-riparazione-grandinate/'
+      preLoaderRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/azienda/': {
@@ -139,6 +160,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutoSostitutivaRiparazioneGrandinateIndexRoute:
+    AutoSostitutivaRiparazioneGrandinateIndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,
   GestioneSinistriDaGrandineIndexRoute: GestioneSinistriDaGrandineIndexRoute,
   LevabolliRiparazioneAutoGrandinateIndexRoute:

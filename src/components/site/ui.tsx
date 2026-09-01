@@ -115,9 +115,9 @@ export function Figure({
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...({ fetchpriority: priority ? "high" : undefined } as any)}
+        fetchPriority={priority ? "high" : "auto"}
         className="img-cine"
+
       />
     </div>
   );

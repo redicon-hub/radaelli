@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SlugIndexRouteImport } from './routes/$slug.index'
 import { Route as AutoSostitutivaRiparazioneGrandinateIndexRouteImport } from './routes/auto-sostitutiva-riparazione-grandinate.index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
 import { Route as ContattiIndexRouteImport } from './routes/contatti.index'
@@ -23,6 +24,11 @@ import { Route as PellicolePerVetriIndexRouteImport } from './routes/pellicole-p
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugIndexRoute = SlugIndexRouteImport.update({
+  id: '/$slug/',
+  path: '/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AutoSostitutivaRiparazioneGrandinateIndexRoute =
@@ -78,6 +84,7 @@ const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/contatti/': typeof ContattiIndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda': typeof AziendaIndexRoute
   '/contatti': typeof ContattiIndexRoute
@@ -103,6 +111,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
   '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   '/azienda/': typeof AziendaIndexRoute
   '/contatti/': typeof ContattiIndexRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/contatti/'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug'
     | '/auto-sostitutiva-riparazione-grandinate'
     | '/azienda'
     | '/contatti'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$slug/'
     | '/auto-sostitutiva-riparazione-grandinate/'
     | '/azienda/'
     | '/contatti/'
@@ -154,6 +166,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugIndexRoute: typeof SlugIndexRoute
   AutoSostitutivaRiparazioneGrandinateIndexRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
   ContattiIndexRoute: typeof ContattiIndexRoute
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug/': {
+      id: '/$slug/'
+      path: '/$slug'
+      fullPath: '/$slug/'
+      preLoaderRoute: typeof SlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auto-sostitutiva-riparazione-grandinate/': {
@@ -242,6 +262,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugIndexRoute: SlugIndexRoute,
   AutoSostitutivaRiparazioneGrandinateIndexRoute:
     AutoSostitutivaRiparazioneGrandinateIndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,

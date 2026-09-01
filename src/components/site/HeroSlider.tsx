@@ -50,6 +50,7 @@ export function HeroSlider({ slides, intervalMs = 7000 }: { slides: HeroSlide[];
   }, [active, go]);
 
   const current = slides[active];
+  if (!current) return null;
 
   return (
     <section

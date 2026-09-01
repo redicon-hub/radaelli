@@ -65,7 +65,9 @@ function AutoCortesia() {
   return (
     <>
       <PageHero
-        eyebrow="Servizio"
+        eyebrow="Mobility / auto di cortesia"
+        ghost="Mobility"
+        labels={["Su prenotazione", "Durante la lavorazione", "Salvo disponibilità"]}
         title="Auto di cortesia"
         subtitle="Un mezzo a disposizione per tutta la durata della riparazione del veicolo danneggiato dalla grandine."
         image={photos.courtesyCar}

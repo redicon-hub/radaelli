@@ -39,7 +39,9 @@ function Lavoro() {
   return (
     <>
       <PageHero
-        eyebrow="Recruiting"
+        eyebrow="Careers / entra nel lab"
+        ghost="Team"
+        labels={["Formazione interna", "Melzo · Milano", "Tecnici PDR"]}
         title="Lavora con noi"
         subtitle="Cerchiamo persone motivate da formare e tecnici già esperti nella tecnica levabolli."
         image={photos.levabolliCorsi}

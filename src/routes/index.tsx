@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Reveal } from "@/components/site/Reveal";
+import { HeroSlider } from "@/components/site/HeroSlider";
 import { LeadForm } from "@/components/site/LeadForm";
+import { Reveal } from "@/components/site/Reveal";
 import {
   CtaBand,
   Editorial,
@@ -12,7 +13,7 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
-import { Arrow, BtnLink, Eyebrow, Figure } from "@/components/site/ui";
+import { Arrow, BtnLink, Figure } from "@/components/site/ui";
 import { business, journalPosts, photos } from "@/lib/site";
 
 const faqs: Faq[] = [

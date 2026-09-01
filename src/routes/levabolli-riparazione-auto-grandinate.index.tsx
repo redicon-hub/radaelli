@@ -113,15 +113,22 @@ function Levabolli() {
   return (
     <>
       <PageHero
-        eyebrow="Servizio principale"
+        eyebrow="Precision surface restoration"
         title="Levabolli Riparazione Auto Grandinate"
         subtitle="Raddrizziamo le ammaccature da grandine senza stuccatura né riverniciatura, mantenendo inalterata l'originalità della tua auto."
         image={photos.hail1}
+        ghost="Zero"
+        labels={[
+          "PDR / paintless dent repair",
+          "Original paint / preserved",
+          "Melzo · Milano",
+        ]}
         breadcrumb={[
           { label: "Home", to: "/" },
           { label: "Levabolli auto grandinate" },
         ]}
       >
+
         <BtnLink to="/contatti/" size="lg">
           Richiedi una valutazione
         </BtnLink>

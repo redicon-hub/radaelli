@@ -10,33 +10,146 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AutoSostitutivaRiparazioneGrandinateIndexRouteImport } from './routes/auto-sostitutiva-riparazione-grandinate.index'
+import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
+import { Route as ContattiIndexRouteImport } from './routes/contatti.index'
+import { Route as CorsiLevabolliMilanoLombardiaIndexRouteImport } from './routes/corsi-levabolli-milano-lombardia.index'
+import { Route as GestioneSinistriDaGrandineIndexRouteImport } from './routes/gestione-sinistri-da-grandine.index'
+import { Route as LavoroLevabolliCorsiIndexRouteImport } from './routes/lavoro-levabolli-corsi.index'
+import { Route as LevabolliRiparazioneAutoGrandinateIndexRouteImport } from './routes/levabolli-riparazione-auto-grandinate.index'
+import { Route as PellicolePerVetriIndexRouteImport } from './routes/pellicole-per-vetri.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutoSostitutivaRiparazioneGrandinateIndexRoute =
+  AutoSostitutivaRiparazioneGrandinateIndexRouteImport.update({
+    id: '/auto-sostitutiva-riparazione-grandinate/',
+    path: '/auto-sostitutiva-riparazione-grandinate/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AziendaIndexRoute = AziendaIndexRouteImport.update({
+  id: '/azienda/',
+  path: '/azienda/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContattiIndexRoute = ContattiIndexRouteImport.update({
+  id: '/contatti/',
+  path: '/contatti/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorsiLevabolliMilanoLombardiaIndexRoute =
+  CorsiLevabolliMilanoLombardiaIndexRouteImport.update({
+    id: '/corsi-levabolli-milano-lombardia/',
+    path: '/corsi-levabolli-milano-lombardia/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GestioneSinistriDaGrandineIndexRoute =
+  GestioneSinistriDaGrandineIndexRouteImport.update({
+    id: '/gestione-sinistri-da-grandine/',
+    path: '/gestione-sinistri-da-grandine/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LavoroLevabolliCorsiIndexRoute =
+  LavoroLevabolliCorsiIndexRouteImport.update({
+    id: '/lavoro-levabolli-corsi/',
+    path: '/lavoro-levabolli-corsi/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LevabolliRiparazioneAutoGrandinateIndexRoute =
+  LevabolliRiparazioneAutoGrandinateIndexRouteImport.update({
+    id: '/levabolli-riparazione-auto-grandinate/',
+    path: '/levabolli-riparazione-auto-grandinate/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PellicolePerVetriIndexRoute = PellicolePerVetriIndexRouteImport.update({
+  id: '/pellicole-per-vetri/',
+  path: '/pellicole-per-vetri/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
+  '/azienda/': typeof AziendaIndexRoute
+  '/contatti/': typeof ContattiIndexRoute
+  '/corsi-levabolli-milano-lombardia/': typeof CorsiLevabolliMilanoLombardiaIndexRoute
+  '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
+  '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
+  '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
+  '/azienda': typeof AziendaIndexRoute
+  '/contatti': typeof ContattiIndexRoute
+  '/corsi-levabolli-milano-lombardia': typeof CorsiLevabolliMilanoLombardiaIndexRoute
+  '/gestione-sinistri-da-grandine': typeof GestioneSinistriDaGrandineIndexRoute
+  '/lavoro-levabolli-corsi': typeof LavoroLevabolliCorsiIndexRoute
+  '/levabolli-riparazione-auto-grandinate': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/pellicole-per-vetri': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auto-sostitutiva-riparazione-grandinate/': typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
+  '/azienda/': typeof AziendaIndexRoute
+  '/contatti/': typeof ContattiIndexRoute
+  '/corsi-levabolli-milano-lombardia/': typeof CorsiLevabolliMilanoLombardiaIndexRoute
+  '/gestione-sinistri-da-grandine/': typeof GestioneSinistriDaGrandineIndexRoute
+  '/lavoro-levabolli-corsi/': typeof LavoroLevabolliCorsiIndexRoute
+  '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  '/pellicole-per-vetri/': typeof PellicolePerVetriIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auto-sostitutiva-riparazione-grandinate/'
+    | '/azienda/'
+    | '/contatti/'
+    | '/corsi-levabolli-milano-lombardia/'
+    | '/gestione-sinistri-da-grandine/'
+    | '/lavoro-levabolli-corsi/'
+    | '/levabolli-riparazione-auto-grandinate/'
+    | '/pellicole-per-vetri/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auto-sostitutiva-riparazione-grandinate'
+    | '/azienda'
+    | '/contatti'
+    | '/corsi-levabolli-milano-lombardia'
+    | '/gestione-sinistri-da-grandine'
+    | '/lavoro-levabolli-corsi'
+    | '/levabolli-riparazione-auto-grandinate'
+    | '/pellicole-per-vetri'
+  id:
+    | '__root__'
+    | '/'
+    | '/auto-sostitutiva-riparazione-grandinate/'
+    | '/azienda/'
+    | '/contatti/'
+    | '/corsi-levabolli-milano-lombardia/'
+    | '/gestione-sinistri-da-grandine/'
+    | '/lavoro-levabolli-corsi/'
+    | '/levabolli-riparazione-auto-grandinate/'
+    | '/pellicole-per-vetri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutoSostitutivaRiparazioneGrandinateIndexRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRoute
+  AziendaIndexRoute: typeof AziendaIndexRoute
+  ContattiIndexRoute: typeof ContattiIndexRoute
+  CorsiLevabolliMilanoLombardiaIndexRoute: typeof CorsiLevabolliMilanoLombardiaIndexRoute
+  GestioneSinistriDaGrandineIndexRoute: typeof GestioneSinistriDaGrandineIndexRoute
+  LavoroLevabolliCorsiIndexRoute: typeof LavoroLevabolliCorsiIndexRoute
+  LevabolliRiparazioneAutoGrandinateIndexRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRoute
+  PellicolePerVetriIndexRoute: typeof PellicolePerVetriIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +161,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auto-sostitutiva-riparazione-grandinate/': {
+      id: '/auto-sostitutiva-riparazione-grandinate/'
+      path: '/auto-sostitutiva-riparazione-grandinate'
+      fullPath: '/auto-sostitutiva-riparazione-grandinate/'
+      preLoaderRoute: typeof AutoSostitutivaRiparazioneGrandinateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/azienda/': {
+      id: '/azienda/'
+      path: '/azienda'
+      fullPath: '/azienda/'
+      preLoaderRoute: typeof AziendaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatti/': {
+      id: '/contatti/'
+      path: '/contatti'
+      fullPath: '/contatti/'
+      preLoaderRoute: typeof ContattiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corsi-levabolli-milano-lombardia/': {
+      id: '/corsi-levabolli-milano-lombardia/'
+      path: '/corsi-levabolli-milano-lombardia'
+      fullPath: '/corsi-levabolli-milano-lombardia/'
+      preLoaderRoute: typeof CorsiLevabolliMilanoLombardiaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gestione-sinistri-da-grandine/': {
+      id: '/gestione-sinistri-da-grandine/'
+      path: '/gestione-sinistri-da-grandine'
+      fullPath: '/gestione-sinistri-da-grandine/'
+      preLoaderRoute: typeof GestioneSinistriDaGrandineIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lavoro-levabolli-corsi/': {
+      id: '/lavoro-levabolli-corsi/'
+      path: '/lavoro-levabolli-corsi'
+      fullPath: '/lavoro-levabolli-corsi/'
+      preLoaderRoute: typeof LavoroLevabolliCorsiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/levabolli-riparazione-auto-grandinate/': {
+      id: '/levabolli-riparazione-auto-grandinate/'
+      path: '/levabolli-riparazione-auto-grandinate'
+      fullPath: '/levabolli-riparazione-auto-grandinate/'
+      preLoaderRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pellicole-per-vetri/': {
+      id: '/pellicole-per-vetri/'
+      path: '/pellicole-per-vetri'
+      fullPath: '/pellicole-per-vetri/'
+      preLoaderRoute: typeof PellicolePerVetriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutoSostitutivaRiparazioneGrandinateIndexRoute:
+    AutoSostitutivaRiparazioneGrandinateIndexRoute,
+  AziendaIndexRoute: AziendaIndexRoute,
+  ContattiIndexRoute: ContattiIndexRoute,
+  CorsiLevabolliMilanoLombardiaIndexRoute:
+    CorsiLevabolliMilanoLombardiaIndexRoute,
+  GestioneSinistriDaGrandineIndexRoute: GestioneSinistriDaGrandineIndexRoute,
+  LavoroLevabolliCorsiIndexRoute: LavoroLevabolliCorsiIndexRoute,
+  LevabolliRiparazioneAutoGrandinateIndexRoute:
+    LevabolliRiparazioneAutoGrandinateIndexRoute,
+  PellicolePerVetriIndexRoute: PellicolePerVetriIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { MobileBar } from "@/components/site/MobileBar";
+import { photos } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +81,57 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Radaelli Levabolli — Riparazione auto grandinate a Melzo (MI)" },
+      {
+        name: "description",
+        content:
+          "Specialisti nella riparazione di auto grandinate con tecnica levabolli (PDR), gestione del sinistro assicurativo, auto di cortesia e pellicole oscuranti. Melzo, Milano.",
+      },
+      { name: "author", content: "Radaelli Pietro" },
+      { name: "theme-color", content: "#101211" },
+      { property: "og:site_name", content: "Radaelli Levabolli" },
+      { property: "og:locale", content: "it_IT" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://www.radaellilevabolli.com" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          name: "Radaelli Levabolli",
+          legalName: "Radaelli Pietro",
+          image: photos.company,
+          telephone: "+39 02 9551729",
+          email: "info@radaellilevabolli.com",
+          vatID: "03786190961",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Via Buozzi, 34",
+            postalCode: "20066",
+            addressLocality: "Melzo",
+            addressRegion: "MI",
+            addressCountry: "IT",
+          },
+          sameAs: [
+            "https://www.facebook.com/RadaelliLevabolli",
+            "https://www.instagram.com/radaelli_levabolli/",
+          ],
+          areaServed: "Milano, Lombardia",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,7 +142,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <head>
         <HeadContent />
       </head>
@@ -119,8 +159,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Header />
+      <main id="contenuto" className="pb-[62px] lg:pb-0">
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </main>
+      <Footer />
+      <MobileBar />
     </QueryClientProvider>
   );
 }
+

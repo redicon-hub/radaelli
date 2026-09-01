@@ -13,7 +13,7 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
-import { Arrow, BtnLink, Figure } from "@/components/site/ui";
+import { Arrow, BtnLink, Eyebrow, Figure } from "@/components/site/ui";
 import { business, journalPosts, photos } from "@/lib/site";
 
 const faqs: Faq[] = [

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AziendaIndexRouteImport } from './routes/azienda.index'
+import { Route as LevabolliRiparazioneAutoGrandinateIndexRouteImport } from './routes/levabolli-riparazione-auto-grandinate.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,41 @@ const AziendaIndexRoute = AziendaIndexRouteImport.update({
   path: '/azienda/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LevabolliRiparazioneAutoGrandinateIndexRoute =
+  LevabolliRiparazioneAutoGrandinateIndexRouteImport.update({
+    id: '/levabolli-riparazione-auto-grandinate/',
+    path: '/levabolli-riparazione-auto-grandinate/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/azienda': typeof AziendaIndexRoute
+  '/levabolli-riparazione-auto-grandinate': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/azienda/': typeof AziendaIndexRoute
+  '/levabolli-riparazione-auto-grandinate/': typeof LevabolliRiparazioneAutoGrandinateIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/azienda/'
+  fullPaths: '/' | '/azienda/' | '/levabolli-riparazione-auto-grandinate/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/azienda'
-  id: '__root__' | '/' | '/azienda/'
+  to: '/' | '/azienda' | '/levabolli-riparazione-auto-grandinate'
+  id: '__root__' | '/' | '/azienda/' | '/levabolli-riparazione-auto-grandinate/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AziendaIndexRoute: typeof AziendaIndexRoute
+  LevabolliRiparazioneAutoGrandinateIndexRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +76,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AziendaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/levabolli-riparazione-auto-grandinate/': {
+      id: '/levabolli-riparazione-auto-grandinate/'
+      path: '/levabolli-riparazione-auto-grandinate'
+      fullPath: '/levabolli-riparazione-auto-grandinate/'
+      preLoaderRoute: typeof LevabolliRiparazioneAutoGrandinateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AziendaIndexRoute: AziendaIndexRoute,
+  LevabolliRiparazioneAutoGrandinateIndexRoute:
+    LevabolliRiparazioneAutoGrandinateIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { business, servicesNav } from "@/lib/site";
 import { Arrow, BtnLink } from "./ui";
+import logoAsset from "@/assets/radaelli-logo.png.asset.json";
 
 export function Footer() {
   return (
@@ -26,16 +27,14 @@ export function Footer() {
 
       <div className="container-x grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <span aria-hidden className="h-10 w-2 bg-brand" />
-            <span>
-              <span className="block font-[family-name:var(--font-display)] text-2xl font-extrabold uppercase tracking-tight text-offwhite">
-                Radaelli
-              </span>
-              <span className="block text-[0.65rem] font-bold uppercase tracking-[0.34em] text-mutedgrey">
-                Levabolli
-              </span>
-            </span>
+          <div>
+            <img
+              src={logoAsset.url}
+              alt="Radaelli Levabolli — 20 anni, 2003-2023"
+              width={448}
+              height={79}
+              className="h-14 w-auto rounded-sm bg-white px-3 py-2"
+            />
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-mutedgrey">
             Riparazione auto grandinate con tecnica levabolli (PDR), gestione del

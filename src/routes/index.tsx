@@ -555,7 +555,7 @@ function Home() {
           </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             {journalPosts.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 80} className={i === 1 ? "md:mt-14" : undefined}>
+              <Reveal key={p.slug} delay={i * 80} className={i === 1 ? "md:mt-14" : ""}>
                 <Link to="/$slug/" params={{ slug: p.slug }} className="group block">
                   <div className="overflow-hidden bg-graphite">
                     <img

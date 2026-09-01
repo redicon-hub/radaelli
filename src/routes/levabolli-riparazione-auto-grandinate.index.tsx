@@ -341,21 +341,40 @@ function Levabolli() {
 
       <Reviews />
 
-      <section className="surface-dark">
-        <div className="container-x grid items-stretch lg:grid-cols-2">
-          <div className="relative min-h-[300px]">
-            <img
-              src={photos.hail8}
-              alt="Auto grandinata pronta per la valutazione"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+      <section className="surface-dark relative isolate overflow-hidden">
+        <img
+          src={photos.hail8}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-25"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{ background: "var(--gradient-hero)" }}
+        />
+        <div className="container-x grid gap-14 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div>
+            <TechLabel>Damage intake</TechLabel>
+            <h2 className="h-xl mt-6 text-offwhite">
+              Facci vedere
+              <br />
+              <span className="text-brand">il danno.</span>
+            </h2>
+            <p className="mt-7 max-w-md text-lg leading-relaxed text-softgrey">
+              Carica qualche fotografia. Al resto pensiamo insieme.
+            </p>
+            <div className="mt-10 max-w-md">
+              <QuickWhatsapp />
+            </div>
           </div>
-          <div className="bg-graphite p-8 sm:p-12 lg:p-16">
+          <div className="border border-white/12 bg-carbon/80 p-7 backdrop-blur-sm sm:p-10 lg:p-12">
             <LeadForm />
           </div>
         </div>
       </section>
+
 
       <CtaBand title="Valutiamo insieme il tuo caso." cta="Parlaci del danno" />
     </>

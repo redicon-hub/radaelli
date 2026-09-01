@@ -3,11 +3,11 @@ import { Reveal } from "@/components/site/Reveal";
 import {
   CtaBand,
   Editorial,
-  Gallery,
   PageHero,
   Section,
   SectionHead,
 } from "@/components/site/sections";
+import { RailGallery, Statement, TechLabel } from "@/components/site/lab";
 import { Figure } from "@/components/site/ui";
 import { photos } from "@/lib/site";
 
@@ -61,7 +61,9 @@ function Azienda() {
   return (
     <>
       <PageHero
-        eyebrow="Chi siamo"
+        eyebrow="Lab profile / since 2003"
+        ghost="Craft"
+        labels={["Melzo · Milano", "Privati · carrozzerie · flotte", "Formazione continua"]}
         title={
           <>
             Siamo qualificati
@@ -127,22 +129,34 @@ function Azienda() {
 
       <Section dark className="pt-0 lg:pt-0">
         <div className="container-x">
-          <SectionHead eyebrow="Come lavoriamo" title="I nostri principi." />
-          <div className="mt-14 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionHead eyebrow="Principles / come lavoriamo" title="Sei regole di officina." />
+          <ol className="mt-14">
             {values.map(([t, d], i) => (
-              <Reveal key={t} delay={(i % 3) * 70} className="bg-carbon p-8 lg:p-10">
-                <span className="font-[family-name:var(--font-display)] text-sm font-extrabold text-brand">
+              <Reveal
+                as="li"
+                key={t}
+                delay={i * 50}
+                className="grid items-baseline gap-x-8 gap-y-2 border-t border-white/12 py-7 last:border-b lg:grid-cols-[5rem_minmax(0,18rem)_1fr]"
+              >
+                <span className="font-[family-name:var(--font-display)] text-3xl font-extrabold tabular-nums text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 text-lg font-extrabold uppercase tracking-[0.05em] text-offwhite">
+                <h3 className="text-[0.95rem] font-extrabold uppercase tracking-[0.12em] text-offwhite">
                   {t}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-mutedgrey">{d}</p>
+                <p className="max-w-xl text-sm leading-relaxed text-mutedgrey">{d}</p>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </Section>
+
+      <Statement
+        kicker="Standard"
+        lines={["Ordine, pulizia,", "puntualità.", "Poi la tecnica."]}
+        image={photos.workshop6}
+        imageAlt="Interno della sede Radaelli Levabolli a Melzo"
+      />
 
       <Section>
         <div className="container-x">
@@ -170,9 +184,12 @@ function Azienda() {
 
       <Section dark className="pt-0 lg:pt-0">
         <div className="container-x">
-          <SectionHead eyebrow="Gallery" title="Dentro l'officina." />
+          <div className="flex items-end justify-between gap-6 border-b border-white/12 pb-6">
+            <TechLabel>Inside the lab</TechLabel>
+            <TechLabel tick={false}>06 frames</TechLabel>
+          </div>
           <div className="mt-12">
-            <Gallery
+            <RailGallery
               images={[
                 { src: photos.workshop1, alt: "Lavorazione levabolli in officina" },
                 { src: photos.workshop2, alt: "Attrezzatura per riparazione PDR" },

@@ -12,6 +12,12 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
+import {
+  OneContactDiagram,
+  QuickWhatsapp,
+  Statement,
+  TechLabel,
+} from "@/components/site/lab";
 import { BtnLink } from "@/components/site/ui";
 import { photos } from "@/lib/site";
 
@@ -69,7 +75,9 @@ function Sinistri() {
   return (
     <>
       <PageHero
-        eyebrow="Servizio"
+        eyebrow="Service design / claim management"
+        ghost="Claim"
+        labels={["Liquidazione diretta", "Perizia in sede", "Auto di cortesia"]}
         title="Gestione sinistri da grandine"
         subtitle="Gestiamo la pratica con la tua compagnia assicurativa e la liquidazione diretta del danno. Tu pensi a guidare."
         image={photos.hail8}
@@ -105,10 +113,23 @@ function Sinistri() {
         </div>
       </Section>
 
+      <Statement
+        kicker="One problem · one contact"
+        lines={["Un solo referente.", "Dalla grandine", "alla riconsegna."]}
+        image={photos.hail6}
+        imageAlt="Auto danneggiata dalla grandine in officina"
+      />
+
+      <Section>
+        <div className="container-x">
+          <OneContactDiagram />
+        </div>
+      </Section>
+
       <Section dark>
         <div className="container-x">
           <SectionHead
-            eyebrow="Iter"
+            eyebrow="Iter / 05 steps"
             title="Come procediamo."
             intro="Cinque passaggi chiari, senza sorprese."
           />
@@ -130,7 +151,8 @@ function Sinistri() {
       <Section>
         <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <h2 className="h-section">Cosa serve per iniziare.</h2>
+            <TechLabel>Checklist / documenti</TechLabel>
+            <h2 className="h-xl mt-6">Cosa serve per iniziare.</h2>
             <ul className="mt-8 space-y-5">
               {[
                 "Numero di polizza e compagnia assicurativa.",
@@ -153,8 +175,11 @@ function Sinistri() {
               </BtnLink>
             </div>
           </Reveal>
-          <Reveal delay={90} className="border border-border p-8 lg:p-12">
-            <LeadForm />
+          <Reveal delay={90}>
+            <div className="border border-current/20 p-8 lg:p-12">
+              <LeadForm />
+            </div>
+            <QuickWhatsapp className="mt-4" />
           </Reveal>
         </div>
       </Section>

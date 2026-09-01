@@ -2,10 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Reveal } from "@/components/site/Reveal";
 import {
+  BeforeAfter,
+  PdrMethod,
+  QuickWhatsapp,
+  RailGallery,
+  Statement,
+  TechLabel,
+} from "@/components/site/lab";
+import {
   CtaBand,
   Editorial,
   FaqList,
-  Gallery,
   PageHero,
   ProcessSteps,
   Reviews,
@@ -14,8 +21,9 @@ import {
   faqSchema,
   type Faq,
 } from "@/components/site/sections";
-import { BtnLink, Eyebrow, Figure } from "@/components/site/ui";
+import { BtnLink, Eyebrow } from "@/components/site/ui";
 import { photos } from "@/lib/site";
+
 
 const faqs: Faq[] = [
   {

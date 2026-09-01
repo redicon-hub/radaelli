@@ -11,7 +11,7 @@ export function Footer() {
             Hai l'auto grandinata?
           </h2>
           <div className="flex flex-wrap gap-3">
-            <BtnLink to="/contatti/" size="lg">
+            <BtnLink to="/contatti" size="lg">
               Richiedi una valutazione
             </BtnLink>
             <a
@@ -66,11 +66,11 @@ export function Footer() {
         </FooterCol>
 
         <FooterCol title="Informazioni">
-          <FooterLink to="/azienda/">Azienda</FooterLink>
-          <FooterLink to="/corsi-levabolli-milano-lombardia/">Corsi levabolli</FooterLink>
-          <FooterLink to="/lavoro-levabolli-corsi/">Lavora con noi</FooterLink>
-          <FooterLink to="/news/">News</FooterLink>
-          <FooterLink to="/contatti/">Contatti</FooterLink>
+          <FooterLink to="/azienda">Azienda</FooterLink>
+          <FooterLink to="/corsi-levabolli-milano-lombardia">Corsi levabolli</FooterLink>
+          <FooterLink to="/lavoro-levabolli-corsi">Lavora con noi</FooterLink>
+          <FooterLink to="/news">News</FooterLink>
+          <FooterLink to="/contatti">Contatti</FooterLink>
         </FooterCol>
 
         <FooterCol title="Contatti">

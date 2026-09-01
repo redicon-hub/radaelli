@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 import { Arrow, BtnLink } from "./ui";
 
 const mainNav = [
-  { label: "Azienda", to: "/azienda/" },
-  { label: "Corsi", to: "/corsi-levabolli-milano-lombardia/" },
-  { label: "Lavora con noi", to: "/lavoro-levabolli-corsi/" },
-  { label: "News", to: "/news/" },
-  { label: "Contatti", to: "/contatti/" },
+  { label: "Azienda", to: "/azienda" },
+  { label: "Corsi", to: "/corsi-levabolli-milano-lombardia" },
+  { label: "Lavora con noi", to: "/lavoro-levabolli-corsi" },
+  { label: "News", to: "/news" },
+  { label: "Contatti", to: "/contatti" },
 ];
 
 export function Header() {
@@ -50,7 +50,7 @@ export function Header() {
 
         <nav aria-label="Principale" className="hidden items-center gap-1 xl:flex">
           <Link
-            to="/azienda/"
+            to="/azienda"
             className="px-3 py-2 text-[0.74rem] font-bold uppercase tracking-[0.16em] text-softgrey transition-colors hover:text-brand-bright"
           >
             Azienda
@@ -99,7 +99,7 @@ export function Header() {
           >
             {business.phone}
           </a>
-          <BtnLink to="/contatti/" className="hidden sm:inline-flex">
+          <BtnLink to="/contatti" className="hidden sm:inline-flex">
             Auto grandinata?
           </BtnLink>
           <button
@@ -119,7 +119,7 @@ export function Header() {
       {open && (
         <div className="surface-dark max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-white/10 bg-carbon xl:hidden">
           <nav aria-label="Menu mobile" className="container-x py-4">
-            {[{ label: "Azienda", to: "/azienda/" }, ...servicesNav, ...mainNav.slice(1)].map(
+            {[{ label: "Azienda", to: "/azienda" }, ...servicesNav, ...mainNav.slice(1)].map(
               (n) => (
                 <Link
                   key={n.to}
@@ -131,7 +131,7 @@ export function Header() {
               ),
             )}
             <div className="flex flex-col gap-3 py-6">
-              <BtnLink to="/contatti/" size="lg">
+              <BtnLink to="/contatti" size="lg">
                 Richiedi valutazione
               </BtnLink>
               <a

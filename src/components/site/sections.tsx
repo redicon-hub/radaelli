@@ -297,7 +297,7 @@ export function CtaBand({
   title,
   text,
   cta = "Richiedi una valutazione",
-  to = "/contatti/",
+  to = "/contatti",
 }: {
   title: ReactNode;
   text?: string;

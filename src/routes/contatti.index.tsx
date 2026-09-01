@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero, Section, SectionHead } from "@/components/site/sections";
+import { QuickWhatsapp, TechLabel } from "@/components/site/lab";
 import { business, photos } from "@/lib/site";
 
 export const Route = createFileRoute("/contatti/")({
@@ -31,14 +32,50 @@ export const Route = createFileRoute("/contatti/")({
 function Contatti() {
   return (
     <>
-      <PageHero
-        compact
-        eyebrow="Contatti"
-        title="Parliamo della tua auto."
-        subtitle="Siamo a Melzo, alle porte di Milano. Riceviamo privati, carrozzerie, concessionarie e parchi auto su appuntamento."
-        image={photos.workshop1}
-        breadcrumb={[{ label: "Home", to: "/" }, { label: "Contatti" }]}
-      />
+      <section className="surface-dark relative isolate flex min-h-[78svh] items-end overflow-hidden">
+        <img
+          src={photos.workshop1}
+          alt="Officina Radaelli Levabolli a Melzo"
+          className="absolute inset-0 -z-20 h-full w-full object-cover opacity-45"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
+        <div className="container-x relative w-full pb-16 pt-40">
+          <TechLabel>Contatti · Melzo 45°30&apos;N / 9°25&apos;E</TechLabel>
+          <h1 className="h-xxl mt-8 text-offwhite">
+            Parliamo
+            <br />
+            della tua
+            <br />
+            <span className="text-brand">auto.</span>
+          </h1>
+          <div className="mt-12 grid gap-8 border-t border-white/15 pt-8 sm:grid-cols-3">
+            <a href={business.phoneHref} className="group block">
+              <span className="text-[0.66rem] font-extrabold uppercase tracking-[0.24em] text-mutedgrey">
+                Call
+              </span>
+              <span className="mt-2 block text-xl font-extrabold tracking-tight text-offwhite transition-colors group-hover:text-brand">
+                {business.phone}
+              </span>
+            </a>
+            <a href={business.whatsapp} className="group block">
+              <span className="text-[0.66rem] font-extrabold uppercase tracking-[0.24em] text-mutedgrey">
+                WhatsApp / foto
+              </span>
+              <span className="mt-2 block text-xl font-extrabold tracking-tight text-offwhite transition-colors group-hover:text-brand">
+                {business.mobile}
+              </span>
+            </a>
+            <a href={`mailto:${business.email}`} className="group block">
+              <span className="text-[0.66rem] font-extrabold uppercase tracking-[0.24em] text-mutedgrey">
+                Email
+              </span>
+              <span className="mt-2 block break-all text-xl font-extrabold tracking-tight text-offwhite transition-colors group-hover:text-brand">
+                {business.email}
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <Section>
         <div className="container-x grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
@@ -100,11 +137,14 @@ function Contatti() {
             </dl>
           </Reveal>
 
-          <Reveal delay={90} className="border border-border p-8 lg:p-12">
+          <Reveal delay={90}>
+            <QuickWhatsapp className="mb-6" />
+            <div className="border border-border p-8 lg:p-12">
             <LeadForm
               title="Richiedi una valutazione"
               intro="Compila il modulo: ti ricontattiamo con una prima valutazione del danno."
             />
+            </div>
           </Reveal>
         </div>
       </Section>

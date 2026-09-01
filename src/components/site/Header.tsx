@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { business, servicesNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { Arrow, BtnLink } from "./ui";
+import { Arrow } from "./ui";
 import logoAsset from "@/assets/radaelli-logo.png.asset.json";
 
 const mainNav = [
@@ -30,77 +30,88 @@ export function Header() {
   return (
     <header
       className={cn(
-        "surface-dark fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "surface-dark fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled || open
-          ? "bg-carbon/92 supports-[backdrop-filter]:bg-carbon/72 backdrop-blur-xl border-b border-white/10"
+          ? "bg-carbon/90 supports-[backdrop-filter]:bg-carbon/65 backdrop-blur-md border-b border-white/10"
           : "bg-transparent",
       )}
     >
-      <div className="container-x flex h-[72px] items-center justify-between gap-6 lg:h-20">
-        <Link to="/" className="flex items-center gap-3" aria-label="Radaelli Levabolli — home">
-          <img
-            src={logoAsset.url}
-            alt="Radaelli Levabolli — 20 anni, 2003-2023"
-            width={448}
-            height={79}
-            className="h-10 w-auto rounded-sm bg-white px-2.5 py-1.5 lg:h-11"
-          />
-        </Link>
-
-        <nav aria-label="Principale" className="hidden items-center gap-1 xl:flex">
-          <Link
-            to="/azienda/"
-            className="px-3 py-2 text-[0.74rem] font-bold uppercase tracking-[0.16em] text-softgrey transition-colors hover:text-brand-bright"
-          >
-            Azienda
+      <div className="container-x flex h-[72px] items-center justify-between gap-6 lg:h-[86px]">
+        <div className="flex items-center gap-5">
+          <Link to="/" className="flex items-center" aria-label="Radaelli Levabolli — home">
+            <img
+              src={logoAsset.url}
+              alt="Radaelli Levabolli — 20 anni, 2003-2023"
+              width={448}
+              height={79}
+              className="h-9 w-auto bg-white px-2.5 py-1.5 lg:h-10"
+            />
           </Link>
+          <span
+            aria-hidden
+            className="hidden border-l border-white/15 pl-5 text-[0.56rem] font-extrabold uppercase leading-[1.5] tracking-[0.26em] text-mutedgrey xl:block"
+          >
+            Radaelli
+            <br />
+            PDR specialists
+            <br />
+            Milano
+          </span>
+        </div>
 
+        <nav aria-label="Principale" className="hidden items-center gap-8 xl:flex">
           <div className="group relative">
             <button
               type="button"
-              className="flex items-center gap-1.5 px-3 py-2 text-[0.74rem] font-bold uppercase tracking-[0.16em] text-softgrey transition-colors group-hover:text-brand-bright"
+              className="flex items-center gap-2 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-softgrey transition-colors group-hover:text-brand-bright"
               aria-haspopup="true"
             >
               Servizi
-              <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
+              <span aria-hidden className="h-px w-4 bg-brand transition-all group-hover:w-6" />
             </button>
-            <div className="invisible absolute left-0 top-full w-[22rem] translate-y-1 border border-white/10 bg-graphite/98 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              {servicesNav.map((s) => (
+            <div className="invisible absolute left-0 top-full w-[24rem] translate-y-1 border border-white/10 bg-carbon/95 opacity-0 backdrop-blur-md transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              {servicesNav.map((s, i) => (
                 <Link
                   key={s.to}
                   to={s.to}
-                  className="flex items-center justify-between gap-4 border-b border-white/5 px-5 py-4 text-sm font-semibold text-softgrey transition-colors last:border-0 hover:bg-white/5 hover:text-brand-bright"
+                  className="flex items-center justify-between gap-4 border-b border-white/8 px-6 py-5 text-sm font-semibold text-softgrey transition-colors last:border-0 hover:bg-white/5 hover:text-brand-bright"
                 >
-                  {s.label}
-                  <Arrow className="h-3.5 w-3.5 shrink-0 opacity-50" />
+                  <span>
+                    <span className="mb-1 block text-[0.58rem] font-extrabold uppercase tracking-[0.24em] text-brand">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {s.label}
+                  </span>
+                  <Arrow className="h-3.5 w-3.5 shrink-0 opacity-40" />
                 </Link>
               ))}
             </div>
           </div>
 
-          {mainNav.slice(1).map((n) => (
+          {mainNav.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="px-3 py-2 text-[0.74rem] font-bold uppercase tracking-[0.16em] text-softgrey transition-colors hover:text-brand-bright"
+              className="py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-softgrey transition-colors hover:text-brand-bright"
             >
               {n.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <a
             href={business.phoneHref}
-            className="hidden text-[0.78rem] font-extrabold tracking-wide text-offwhite transition-colors hover:text-brand-bright lg:block"
+            className="hidden text-[0.72rem] font-extrabold tracking-[0.08em] text-offwhite transition-colors hover:text-brand-bright lg:block"
           >
             {business.phone}
           </a>
-          <BtnLink to="/contatti/" className="hidden sm:inline-flex">
+          <Link
+            to="/contatti/"
+            className="hidden h-11 items-center gap-2 bg-brand px-6 text-[0.66rem] font-extrabold uppercase tracking-[0.18em] text-[oklch(0.16_0.01_168)] transition-colors hover:bg-brand-bright sm:inline-flex"
+          >
             Auto grandinata?
-          </BtnLink>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -109,7 +120,7 @@ export function Header() {
             className="flex h-11 w-11 items-center justify-center border border-white/15 text-offwhite xl:hidden"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2">
-              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 7h18M3 12h18M3 17h18" />}
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 7h18M3 13h18" />}
             </svg>
           </button>
         </div>
@@ -119,20 +130,23 @@ export function Header() {
         <div className="surface-dark max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-white/10 bg-carbon xl:hidden">
           <nav aria-label="Menu mobile" className="container-x py-4">
             {[{ label: "Azienda", to: "/azienda/" }, ...servicesNav, ...mainNav.slice(1)].map(
-              (n) => (
+              (n, i) => (
                 <Link
                   key={n.to}
                   to={n.to}
-                  className="block border-b border-white/8 py-4 font-[family-name:var(--font-display)] text-lg font-extrabold uppercase tracking-tight text-offwhite"
+                  className="flex items-baseline gap-4 border-b border-white/8 py-4 font-[family-name:var(--font-display)] text-lg font-extrabold uppercase tracking-tight text-offwhite"
                 >
+                  <span className="text-[0.6rem] tracking-[0.24em] text-brand">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {n.label}
                 </Link>
               ),
             )}
             <div className="flex flex-col gap-3 py-6">
-              <BtnLink to="/contatti/" size="lg">
+              <Link to="/contatti/" className="btn-signal justify-center">
                 Richiedi valutazione
-              </BtnLink>
+              </Link>
               <a
                 href={business.phoneHref}
                 className="text-center text-sm font-bold uppercase tracking-[0.18em] text-mutedgrey"

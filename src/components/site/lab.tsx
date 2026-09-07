@@ -119,6 +119,7 @@ export function ReflectionLines({
 
 export function LabHero({
   image,
+  imageAfter,
   imageAlt,
   index,
   title,
@@ -130,6 +131,8 @@ export function LabHero({
   ghost,
 }: {
   image: string;
+  /** Seconda superficie (stessa auto ripristinata): abilita lo scanner. */
+  imageAfter?: string;
   imageAlt: string;
   index: string;
   title: ReactNode;
@@ -158,6 +161,27 @@ export function LabHero({
         className="absolute inset-0 -z-30 h-full w-full object-cover"
         style={{ transform: `scale(${1.06 - p * 0.06})` }}
       />
+      {imageAfter && (
+        <>
+          <div
+            aria-hidden
+            className="surface-scan-layer absolute inset-0 -z-30"
+            style={{ transform: `scale(${1.06 - p * 0.06})` }}
+          >
+            <img
+              src={imageAfter}
+              alt=""
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div
+            aria-hidden
+            className="surface-scan-line absolute inset-y-0 left-0 -z-20 w-px bg-brand"
+            style={{ boxShadow: "0 0 26px 4px color-mix(in srgb, var(--brand) 55%, transparent)" }}
+          />
+        </>
+      )}
       <div
         aria-hidden
         className="absolute inset-0 -z-20"
@@ -166,6 +190,7 @@ export function LabHero({
       <TechGrid className="-z-10 opacity-40" />
       <ReflectionLines progress={Math.min(1, p * 2.6)} className="-z-10" />
       <div aria-hidden className="scanline -z-10" />
+
 
       {ghost && (
         <span aria-hidden className="ghost-word -z-10 bottom-[8%] left-[-2%]">
@@ -616,33 +641,67 @@ export function BeforeAfter({
   }, []);
 
   useEffect(() => {
-    const onMove = (e: PointerEvent) => dragging.current && move(e.clientX);
-    const onUp = () => (dragging.current = false);
-    window.addEventListener("pointermove", onMove);
+    const onMove = (e: PointerEvent) => {
+      if (!dragging.current) return;
+      e.preventDefault();
+      move(e.clientX);
+    };
+    const onUp = () => {
+      dragging.current = false;
+    };
+    window.addEventListener("pointermove", onMove, { passive: false });
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
     };
   }, [move]);
 
   return (
     <div
       ref={box}
-      className={cn("relative isolate select-none overflow-hidden bg-graphite", className)}
+      className={cn(
+        "relative isolate touch-none select-none overflow-hidden bg-graphite",
+        className,
+      )}
       onPointerDown={(e) => {
         dragging.current = true;
+        e.currentTarget.setPointerCapture?.(e.pointerId);
         move(e.clientX);
+      }}
+      onPointerMove={(e) => {
+        if (dragging.current) move(e.clientX);
+      }}
+      onPointerUp={() => {
+        dragging.current = false;
+      }}
+      onLostPointerCapture={() => {
+        dragging.current = false;
       }}
       data-cursor="compare"
     >
-      <img src={after} alt={afterAlt} loading="lazy" className="h-full w-full object-cover" />
+      <img
+        src={after}
+        alt={afterAlt}
+        loading="lazy"
+        draggable={false}
+        className="pointer-events-none h-full w-full object-cover"
+      />
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
-        <img src={before} alt={beforeAlt} loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={before}
+          alt={beforeAlt}
+          loading="lazy"
+          draggable={false}
+          className="h-full w-full object-cover"
+        />
       </div>
+
 
       <span className="pointer-events-none absolute left-5 top-5">
         <TechLabel className="text-offwhite">Before / danno</TechLabel>
@@ -700,15 +759,14 @@ export function SignalTimeline({
       {/* linea verticale mobile / orizzontale desktop */}
       <div aria-hidden className="absolute left-[13px] top-0 h-full w-px bg-white/12 lg:left-0 lg:top-[13px] lg:h-px lg:w-full">
         <div
-          className="h-full w-px bg-brand transition-all duration-300 lg:h-px lg:w-full"
-          style={{
-            height: `${fill * 100}%`,
-            width: "100%",
-            ...(typeof window !== "undefined" && window.innerWidth >= 1024
-              ? { width: `${fill * 100}%`, height: "1px" }
-              : {}),
-          }}
+          className="absolute inset-0 origin-top bg-brand transition-transform duration-300 lg:hidden"
+          style={{ transform: `scaleY(${fill})` }}
         />
+        <div
+          className="absolute inset-0 hidden origin-left bg-brand transition-transform duration-300 lg:block"
+          style={{ transform: `scaleX(${fill})` }}
+        />
+
       </div>
 
       <ol className="grid gap-10 lg:grid-cols-6 lg:gap-6">

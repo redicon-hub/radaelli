@@ -296,22 +296,82 @@
 
 @utility h-xxl {
   font-family: var(--font-display);
-  font-size: clamp(3.1rem, 8.6vw, 9.5rem);
+  font-size: clamp(2.6rem, 6.6vw, 7rem);
   font-weight: 800;
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 @utility h-xl {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5.4vw, 5.5rem);
+  font-size: clamp(2.1rem, 4.6vw, 4.6rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  line-height: 0.94;
+  letter-spacing: -0.032em;
   text-transform: uppercase;
 }
+
+/* Scanner hero: la superficie passa da grandinata a ripristinata */
+@keyframes surface-scan-wipe {
+  0%,
+  8% {
+    clip-path: inset(0 100% 0 0);
+  }
+  46%,
+  62% {
+    clip-path: inset(0 0 0 0);
+  }
+  96%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes surface-scan-line {
+  0%,
+  8% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  46% {
+    transform: translate3d(100vw, 0, 0);
+    opacity: 1;
+  }
+  58% {
+    transform: translate3d(100vw, 0, 0);
+    opacity: 0;
+  }
+  96%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+}
+
+.surface-scan-layer {
+  animation: surface-scan-wipe 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.surface-scan-line {
+  animation: surface-scan-line 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface-scan-layer {
+    animation: none;
+    clip-path: inset(0 0 0 0);
+  }
+  .surface-scan-line {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 
 /* micro annotazione tecnica / editorial engineering */
 @utility tech-label {

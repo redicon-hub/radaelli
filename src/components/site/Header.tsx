@@ -42,7 +42,7 @@ export function Header() {
             <img
               src={logoMenu}
               alt="Radaelli Levabolli"
-              width={300}
+              width={317}
               height={79}
               className="h-10 w-auto object-contain lg:h-11"
             />

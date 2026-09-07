@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { business, servicesNav } from "@/lib/site";
 import { Arrow, BtnLink } from "./ui";
 import { TechLabel } from "./lab";
-import logoMenu from "@/assets/radaelli-logo-menu.png";
+import logoBrand from "@/assets/radaelli-logo-brand.png";
 
 export function Footer() {
   return (
@@ -46,9 +46,9 @@ export function Footer() {
         <div>
           <div>
             <img
-              src={logoMenu}
+              src={logoBrand}
               alt="Radaelli Levabolli"
-              width={300}
+              width={317}
               height={79}
               className="h-14 w-auto object-contain"
             />

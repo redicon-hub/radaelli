@@ -759,15 +759,14 @@ export function SignalTimeline({
       {/* linea verticale mobile / orizzontale desktop */}
       <div aria-hidden className="absolute left-[13px] top-0 h-full w-px bg-white/12 lg:left-0 lg:top-[13px] lg:h-px lg:w-full">
         <div
-          className="h-full w-px bg-brand transition-all duration-300 lg:h-px lg:w-full"
-          style={{
-            height: `${fill * 100}%`,
-            width: "100%",
-            ...(typeof window !== "undefined" && window.innerWidth >= 1024
-              ? { width: `${fill * 100}%`, height: "1px" }
-              : {}),
-          }}
+          className="absolute inset-0 origin-top bg-brand transition-transform duration-300 lg:hidden"
+          style={{ transform: `scaleY(${fill})` }}
         />
+        <div
+          className="absolute inset-0 hidden origin-left bg-brand transition-transform duration-300 lg:block"
+          style={{ transform: `scaleX(${fill})` }}
+        />
+
       </div>
 
       <ol className="grid gap-10 lg:grid-cols-6 lg:gap-6">

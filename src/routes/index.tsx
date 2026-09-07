@@ -24,6 +24,8 @@ import {
 } from "@/components/site/sections";
 import { Arrow } from "@/components/site/ui";
 import { business, journalPosts, photos } from "@/lib/site";
+import surfaceDented from "@/assets/surface-dented.jpg";
+import surfaceRestored from "@/assets/surface-restored.jpg";
 
 const faqs: Faq[] = [
   {
@@ -190,10 +192,10 @@ function Home() {
 
         <div className="mt-12">
           <BeforeAfter
-            before={photos.hail5}
-            after={photos.hail3}
+            before={surfaceDented}
+            after={surfaceRestored}
             beforeAlt="Pannello grandinato prima dell'intervento levabolli"
-            afterAlt="Carrozzeria ripristinata dopo la riparazione levabolli"
+            afterAlt="Stessa carrozzeria ripristinata dopo la riparazione levabolli"
             className="h-[62svh] w-full lg:h-[82svh]"
           />
         </div>
@@ -267,7 +269,7 @@ function Home() {
       <Statement
         dark={false}
         kicker="Point of view"
-        lines={["Tu vedi decine di bolli.", "Noi vediamo una superficie", "da ripristinare."]}
+        lines={["Tu vedi decine di bolli.", "Noi vediamo una superficie da ripristinare."]}
       />
 
       {/* ------------------------------------------------ FUNNEL GRANDINE */}

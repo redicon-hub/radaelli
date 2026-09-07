@@ -593,19 +593,36 @@ export function StickyProcess({
   const refs = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            const i = refs.current.indexOf(e.target as HTMLLIElement);
-            if (i >= 0) setActive(i);
-          }
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const viewportCenter = window.innerHeight * 0.5;
+      let next = 0;
+      let nearest = Number.POSITIVE_INFINITY;
+
+      refs.current.forEach((element, index) => {
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const distance = Math.abs(rect.top + rect.height * 0.5 - viewportCenter);
+        if (distance < nearest) {
+          nearest = distance;
+          next = index;
         }
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    refs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
+      });
+      setActive(next);
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, [steps.length]);
 
   return (
@@ -616,9 +633,9 @@ export function StickyProcess({
           <h2 className="h-section mt-6 max-w-3xl text-offwhite">{title}</h2>
         </div>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="hidden lg:block">
-            <div className="sticky top-28 aspect-[4/5] overflow-hidden bg-graphite">
+        <div className="mt-12 grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="sticky top-28 hidden lg:block">
+            <div className="aspect-[4/5] max-h-[calc(100vh-9rem)] overflow-hidden bg-graphite">
               {steps.map((s, i) => (
                 <div
                   key={s.code}
@@ -649,7 +666,7 @@ export function StickyProcess({
                   refs.current[i] = el;
                 }}
                 className={cn(
-                  "border-t border-white/12 py-10 transition-opacity duration-500 last:border-b lg:py-16",
+                  "border-t border-white/12 py-10 transition-opacity duration-500 last:border-b lg:flex lg:min-h-[68vh] lg:flex-col lg:justify-center lg:py-20",
                   i === active ? "opacity-100" : "lg:opacity-45",
                 )}
               >

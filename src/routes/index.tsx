@@ -120,8 +120,10 @@ function Home() {
     <>
       {/* ------------------------------------------------ HERO / SCANNER */}
       <LabHero
-        image={photos.heroHome}
-        imageAlt="Carrozzeria in lavorazione presso Radaelli Levabolli a Melzo"
+        image={surfaceDented}
+        imageAfter={surfaceRestored}
+        imageAlt="Superficie di una carrozzeria grandinata che torna perfetta dopo la riparazione levabolli"
+
         index="00 / SURFACE"
         ghost="PDR"
         title={

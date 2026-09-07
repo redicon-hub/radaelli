@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { business, servicesNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Arrow } from "./ui";
-import logoAsset from "@/assets/radaelli-logo.png.asset.json";
+import logoMenu from "@/assets/radaelli-logo-menu.png";
 
 const mainNav = [
   { label: "Azienda", to: "/azienda/" },
@@ -40,11 +40,11 @@ export function Header() {
         <div className="flex items-center gap-5">
           <Link to="/" className="flex items-center" aria-label="Radaelli Levabolli — home">
             <img
-              src={logoAsset.url}
-              alt="Radaelli Levabolli — 20 anni, 2003-2023"
-              width={448}
+              src={logoMenu}
+              alt="Radaelli Levabolli"
+              width={300}
               height={79}
-              className="h-9 w-auto bg-white px-2.5 py-1.5 lg:h-10"
+              className="h-10 w-auto object-contain lg:h-11"
             />
           </Link>
           <span

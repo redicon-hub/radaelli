@@ -507,7 +507,78 @@ export function PdrMethod() {
 /* Sticky storytelling                                                 */
 /* ------------------------------------------------------------------ */
 
-export type StickyStep = { code: string; title: string; text: string; image: string };
+export type StickyStep = { code: string; title: string; text: string };
+
+function ProcessGraphic({ step }: { step: number }) {
+  const dent = step === 0 ? 50 : step === 1 ? 42 : step === 2 ? 22 : step === 3 ? 7 : 0;
+  const surface = `M 36 214 C 168 214, 220 ${214 + dent}, 320 ${214 + dent} S 474 214, 604 214`;
+
+  return (
+    <div className="relative h-full w-full bg-graphite" aria-hidden>
+      <TechGrid className="opacity-45" />
+      <svg viewBox="0 0 640 800" className="absolute inset-0 h-full w-full">
+        <g fill="none">
+          {Array.from({ length: 7 }).map((_, i) => (
+            <path
+              key={i}
+              d={`M 36 ${154 + i * 30} C 168 ${154 + i * 30}, 220 ${154 + i * 30 + dent}, 320 ${154 + i * 30 + dent} S 474 ${154 + i * 30}, 604 ${154 + i * 30}`}
+              stroke={i === 2 ? "var(--brand-bright)" : "white"}
+              strokeWidth={i === 2 ? 2 : 1}
+              opacity={i === 2 ? 0.9 : 0.2}
+            />
+          ))}
+          <path d={surface} stroke="var(--brand-bright)" strokeWidth="3" />
+          {step === 0 && (
+            <>
+              <circle cx="320" cy="267" r="62" stroke="white" opacity="0.16" />
+              <circle cx="320" cy="267" r="34" stroke="var(--brand-bright)" strokeDasharray="4 8" />
+              <path d="M320 84v112M302 178l18 18 18-18" stroke="white" strokeWidth="2" />
+            </>
+          )}
+          {step === 1 && (
+            <>
+              <circle cx="320" cy="256" r="92" stroke="var(--brand-bright)" strokeDasharray="3 9" />
+              <path d="M320 139v234M203 256h234" stroke="white" opacity="0.3" />
+              <path d="M242 178h-28v28M398 178h28v28M242 334h-28v-28M398 334h28v-28" stroke="white" strokeWidth="2" />
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <path d="M320 540V256" stroke="var(--brand-bright)" strokeWidth="4" />
+              <circle cx="320" cy="252" r="9" fill="var(--brand-bright)" />
+              <path d="M280 480h80M292 480l-18 72M348 480l18 72" stroke="white" strokeWidth="3" />
+              {[-42, -21, 0, 21, 42].map((x) => (
+                <path key={x} d={`M ${320 + x} 298v-34`} stroke="white" opacity="0.5" />
+              ))}
+            </>
+          )}
+          {step === 3 && (
+            <>
+              <path d="M120 104v404M176 104v404M232 104v404M288 104v404M344 104v404M400 104v404M456 104v404M512 104v404" stroke="white" opacity="0.18" />
+              <path d="M100 214h440" stroke="var(--brand-bright)" strokeWidth="2" />
+              <circle cx="320" cy="214" r="74" stroke="var(--brand-bright)" strokeDasharray="2 8" />
+            </>
+          )}
+          {step === 4 && (
+            <>
+              <path d="M88 214h464" stroke="var(--brand-bright)" strokeWidth="3" />
+              <path d="m270 344 34 34 76-88" stroke="white" strokeWidth="5" />
+              <circle cx="320" cy="334" r="82" stroke="white" opacity="0.16" />
+            </>
+          )}
+        </g>
+        <g fill="white" fontFamily="monospace" fontSize="11" letterSpacing="3" opacity="0.45">
+          <text x="36" y="54">SURFACE / CONTROL</text>
+          <text x="36" y="742">X 45°28′</text>
+          <text x="472" y="742">TOL ±0.01</text>
+        </g>
+      </svg>
+      <span className="absolute bottom-8 left-8 font-[family-name:var(--font-display)] text-[7rem] font-extrabold leading-none text-white/5">
+        {String(step + 1).padStart(2, "0")}
+      </span>
+    </div>
+  );
+}
 
 export function StickyProcess({
   kicker,
@@ -549,17 +620,16 @@ export function StickyProcess({
           <div className="hidden lg:block">
             <div className="sticky top-28 aspect-[4/5] overflow-hidden bg-graphite">
               {steps.map((s, i) => (
-                <img
-                  key={s.image + i}
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
+                <div
+                  key={s.code}
                   className="absolute inset-0 h-full w-full object-cover transition-all duration-700"
                   style={{
                     opacity: i === active ? 1 : 0,
                     transform: i === active ? "scale(1)" : "scale(1.05)",
                   }}
-                />
+                >
+                  <ProcessGraphic step={i} />
+                </div>
               ))}
               <div aria-hidden className="scanline" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-5">
@@ -597,12 +667,9 @@ export function StickyProcess({
                 <p className="mt-4 max-w-md text-[0.98rem] leading-relaxed text-softgrey">
                   {s.text}
                 </p>
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  loading="lazy"
-                  className="mt-6 aspect-[16/10] w-full object-cover lg:hidden"
-                />
+                <div className="mt-6 aspect-[16/10] w-full overflow-hidden lg:hidden">
+                  <ProcessGraphic step={i} />
+                </div>
               </li>
             ))}
           </ol>

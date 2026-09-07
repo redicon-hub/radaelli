@@ -119,6 +119,7 @@ export function ReflectionLines({
 
 export function LabHero({
   image,
+  imageAfter,
   imageAlt,
   index,
   title,
@@ -130,6 +131,8 @@ export function LabHero({
   ghost,
 }: {
   image: string;
+  /** Seconda superficie (stessa auto ripristinata): abilita lo scanner. */
+  imageAfter?: string;
   imageAlt: string;
   index: string;
   title: ReactNode;
@@ -158,6 +161,27 @@ export function LabHero({
         className="absolute inset-0 -z-30 h-full w-full object-cover"
         style={{ transform: `scale(${1.06 - p * 0.06})` }}
       />
+      {imageAfter && (
+        <>
+          <div
+            aria-hidden
+            className="surface-scan-layer absolute inset-0 -z-30"
+            style={{ transform: `scale(${1.06 - p * 0.06})` }}
+          >
+            <img
+              src={imageAfter}
+              alt=""
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div
+            aria-hidden
+            className="surface-scan-line absolute inset-y-0 left-0 -z-20 w-px bg-brand"
+            style={{ boxShadow: "0 0 26px 4px color-mix(in srgb, var(--brand) 55%, transparent)" }}
+          />
+        </>
+      )}
       <div
         aria-hidden
         className="absolute inset-0 -z-20"
@@ -166,6 +190,7 @@ export function LabHero({
       <TechGrid className="-z-10 opacity-40" />
       <ReflectionLines progress={Math.min(1, p * 2.6)} className="-z-10" />
       <div aria-hidden className="scanline -z-10" />
+
 
       {ghost && (
         <span aria-hidden className="ghost-word -z-10 bottom-[8%] left-[-2%]">

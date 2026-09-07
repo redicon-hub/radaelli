@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { business, servicesNav } from "@/lib/site";
 import { Arrow, BtnLink } from "./ui";
 import { TechLabel } from "./lab";
-import logoAsset from "@/assets/radaelli-logo.png.asset.json";
+import logoBrand from "@/assets/radaelli-logo-brand.png";
 
 export function Footer() {
   return (
@@ -46,11 +46,11 @@ export function Footer() {
         <div>
           <div>
             <img
-              src={logoAsset.url}
-              alt="Radaelli Levabolli — 20 anni, 2003-2023"
-              width={448}
+              src={logoBrand}
+              alt="Radaelli Levabolli"
+              width={317}
               height={79}
-              className="h-14 w-auto bg-white px-3 py-2"
+              className="h-14 w-auto object-contain"
             />
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-mutedgrey">

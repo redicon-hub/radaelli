@@ -23,7 +23,7 @@ import {
   type Faq,
 } from "@/components/site/sections";
 import { Arrow } from "@/components/site/ui";
-import { business, journalPosts, photos } from "@/lib/site";
+import { journalPosts, photos } from "@/lib/site";
 import surfaceDented from "@/assets/surface-dented.jpg";
 import surfaceRestored from "@/assets/surface-restored.jpg";
 
@@ -236,31 +236,26 @@ function Home() {
             code: "01",
             title: "Analisi",
             text: "Verifichiamo lo stato del film di vernice, la profondità di ogni bollo e l'applicabilità della tecnica levabolli.",
-            image: photos.hail5,
           },
           {
             code: "02",
             title: "Accesso",
             text: "Studiamo il punto di accesso al retro del pannello, smontando solo ciò che è strettamente necessario.",
-            image: photos.workshop1,
           },
           {
             code: "03",
             title: "Micro-pressione",
             text: "Con leve dedicate applichiamo micro-pressioni calibrate: la lamiera viene riportata in forma senza stress della vernice.",
-            image: photos.hail7,
           },
           {
             code: "04",
             title: "Controllo superficie",
             text: "Le linee di riflessione confermano la planarità del pannello in luce radente, millimetro per millimetro.",
-            image: photos.workshop5,
           },
           {
             code: "05",
             title: "Ripristino",
             text: "Rimontaggio, pulizia e riconsegna nei tempi concordati: l'auto torna con la sua vernice originale.",
-            image: photos.hail3,
           },
         ]}
       />
@@ -589,28 +584,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* ------------------------------------------------ CTA FINALE */}
-      <section className="relative isolate overflow-hidden border-t border-current/15">
-        <div className="container-x flex flex-col gap-10 py-20 lg:flex-row lg:items-end lg:justify-between lg:py-28">
-          <div>
-            <TechLabel>Start here</TechLabel>
-            <h2 className="h-xl mt-6 max-w-2xl">
-              Parliamo
-              <br />
-              <span className="text-brand">della tua auto.</span>
-            </h2>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contatti/" className="btn-signal">
-              Richiedi una valutazione
-              <Arrow className="h-3.5 w-3.5" />
-            </Link>
-            <a href={business.phoneHref} className="btn-wire text-foreground">
-              {business.phone}
-            </a>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

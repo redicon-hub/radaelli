@@ -641,33 +641,67 @@ export function BeforeAfter({
   }, []);
 
   useEffect(() => {
-    const onMove = (e: PointerEvent) => dragging.current && move(e.clientX);
-    const onUp = () => (dragging.current = false);
-    window.addEventListener("pointermove", onMove);
+    const onMove = (e: PointerEvent) => {
+      if (!dragging.current) return;
+      e.preventDefault();
+      move(e.clientX);
+    };
+    const onUp = () => {
+      dragging.current = false;
+    };
+    window.addEventListener("pointermove", onMove, { passive: false });
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
     };
   }, [move]);
 
   return (
     <div
       ref={box}
-      className={cn("relative isolate select-none overflow-hidden bg-graphite", className)}
+      className={cn(
+        "relative isolate touch-none select-none overflow-hidden bg-graphite",
+        className,
+      )}
       onPointerDown={(e) => {
         dragging.current = true;
+        e.currentTarget.setPointerCapture?.(e.pointerId);
         move(e.clientX);
+      }}
+      onPointerMove={(e) => {
+        if (dragging.current) move(e.clientX);
+      }}
+      onPointerUp={() => {
+        dragging.current = false;
+      }}
+      onLostPointerCapture={() => {
+        dragging.current = false;
       }}
       data-cursor="compare"
     >
-      <img src={after} alt={afterAlt} loading="lazy" className="h-full w-full object-cover" />
+      <img
+        src={after}
+        alt={afterAlt}
+        loading="lazy"
+        draggable={false}
+        className="pointer-events-none h-full w-full object-cover"
+      />
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
-        <img src={before} alt={beforeAlt} loading="lazy" className="h-full w-full object-cover" />
+        <img
+          src={before}
+          alt={beforeAlt}
+          loading="lazy"
+          draggable={false}
+          className="h-full w-full object-cover"
+        />
       </div>
+
 
       <span className="pointer-events-none absolute left-5 top-5">
         <TechLabel className="text-offwhite">Before / danno</TechLabel>
